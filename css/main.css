@@ -39,12 +39,6 @@ text-align: center;
     text-transform: uppercase;
 }
 
-.content-footer {
-  margin:0px;
-  padding:0px;
-  min-width:100%;
-  max-width:100%;
-}
 
 .introduction-section,
 .location-section,
@@ -80,7 +74,10 @@ a:visited {
 
 .introduction-section > p,
 .location-section > p,
-
+.content-footer > p {
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
 
 .questions-section > h2 {
   color: #1C9180;
@@ -95,9 +92,11 @@ section > h1 {
 }
 
 footer { padding: 6em 0;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    background: #324411;
+background: #324411;
+  margin:0px;
+  padding:0px;
+  min-width:100%;
+  max-width:100%;
 }
 
 .content-footer > p {
