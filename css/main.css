@@ -1,0 +1,101 @@
+body {
+    background-color: #ffffff;
+  /* asked for color: #222222; */
+  font-size: 1em;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.masthead-intro,
+.masthead-heading,
+.content-footer > p,
+.social{
+text-align: center;
+}
+
+.masthead {
+  padding: 4em 0;
+  background-image: url('http://i64.tinypic.com/2vngpix.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: solid 1em #8ABD2E
+}
+
+.masthead-intro {
+    /* Layout Declarations */
+    margin-bottom: 0.1em;
+    /* Typography Declarations */
+    font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 2em;
+  color: #E8F4D1;
+}
+
+.masthead-heading {
+    margin-top: -0.2em;
+  color: #57B11B;
+  text-shadow: 0em .02em #618420;
+   font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    font-size: 5em;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+/*.content-footer,*/
+.introduction-section,
+.location-section,
+.questions-section {
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+  margin-bottom: 4em;
+}
+
+.social > li { display: inline-block;
+}
+
+
+a {
+  /* Typography Declrations */
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFCF33;
+}
+
+a:hover {
+  /* Tyopography Declarations */
+  color: #FFE799;
+}
+
+
+a:visited {
+  /* Typography Declarations */
+  color: #D1A000;
+}
+
+.introduction-section > p,
+.location-section > p,
+.content-footer > p {
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.questions-section > h2 {
+  color: #1C9180;
+  font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 2em 0 1em 0;
+}
+
+section > h1 {
+    margin-top: 2em;
+}
+
+footer { padding: 6em 0;
+background: #324411;
+}
+
+.content-footer > p {
+  color: #F4FAEB;
+}
