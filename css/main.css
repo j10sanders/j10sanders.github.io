@@ -39,6 +39,12 @@ text-align: center;
     text-transform: uppercase;
 }
 
+.content-footer {
+  margin:0px;
+  padding:0px;
+  min-width:100%;
+  max-width:100%;
+}
 
 .introduction-section,
 .location-section,
