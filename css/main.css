@@ -80,10 +80,7 @@ a:visited {
 
 .introduction-section > p,
 .location-section > p,
-.content-footer > p {
-    font-weight: 300;
-    letter-spacing: 0.05em;
-}
+
 
 .questions-section > h2 {
   color: #1C9180;
@@ -98,7 +95,9 @@ section > h1 {
 }
 
 footer { padding: 6em 0;
-background: #324411;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    background: #324411;
 }
 
 .content-footer > p {
