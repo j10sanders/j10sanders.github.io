@@ -1,5 +1,6 @@
 body {
     background-color: #ffffff;
+  /* asked for color: #222222; */
   font-size: 1em;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -39,7 +40,7 @@ text-align: center;
     text-transform: uppercase;
 }
 
-
+/*.content-footer,*/
 .introduction-section,
 .location-section,
 .questions-section {
@@ -93,10 +94,6 @@ section > h1 {
 
 footer { padding: 6em 0;
 background: #324411;
-  margin:0px;
-  padding:0px;
-  min-width:100%;
-  max-width:100%;
 }
 
 .content-footer > p {
