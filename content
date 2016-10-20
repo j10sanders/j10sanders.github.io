@@ -13,7 +13,7 @@ text-align: center;
 
 .masthead {
   padding: 3em 0;
-  background-image: url('http://i64.tinypic.com/2vngpix.jpg');
+  background-image: url('http://i.imgur.com/AHtOJli.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   border-top: solid 1em #8ABD2E
@@ -39,7 +39,6 @@ text-align: center;
     text-transform: uppercase;
 }
 
-.content-footer,
 .introduction-section,
 .location-section,
 .questions-section {
@@ -96,6 +95,8 @@ footer { padding: 2em 0;
 background: #324411;
 }
 
-.content-footer > p {
+.content-footer > p, ul {
+    margin: 1;
+    padding: 0;
   color: #F4FAEB;
 }
