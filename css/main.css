@@ -45,8 +45,8 @@ text-align: center;
     max-width: 38em;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2em;
-  margin-bottom: 4em;
+    margin-top: 1em;
+  margin-bottom: 8em;
 }
 
 .social > li { 
@@ -100,3 +100,4 @@ background: #324411;
     padding: 0;
   color: #F4FAEB;
 }
+
