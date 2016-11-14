@@ -1,44 +1,62 @@
-<!DOCTYPE html>
+---
+layout: default
+title: Home
+---
 
-<html>
-	<header class="masthead">  
-    	<p class="masthead-intro">Hi, I'm</p>
-    	<h1 class="masthead-heading">Jonathan</h1> 
-		<!-- link to main stylesheet -->
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
-		</header>
-<section class="introduction-section">
-    <h1>Introduction</h1>
-  <p>My name is Jonathan Sanders.  I'm a programmer because I like building things.  More info here:</p>
-  <nav>
-    		<ul>
-        		<li><a href="/">Home</a></li>
-	        	<li><a href="/about">About</a></li>
-        		<li><a href="/cv">CV</a></li>
-        		<li><a href="/blog">Blog</a></li>
-    		</ul>
-		</nav>
-  </section>
+<div class="home">
+  <div class="post-list">
 
-<body>
-  
-<section class="location-section">
-  </section> 
-  
-<section class="questions-section">
-  <h1> The set of things that I enjoy includes: </h1>
-  <p>[Ultimate Frisbee, boardgames, weight lifting, mandolin, martinis]</p>
-</section>
-    
-  <footer class="content-footer">
-    <p>Other places to fine me online:</p>
-  <ul class="social">
-  <li><a href="https://twitter.com/jps458">Twitter</a></li>
-  <li><a href="https://github.com/j10sanders">Github</a></li>
-  <li><a href="https://instagram.com/jon_sndrs/">Instagram</a></li>
-</ul>
-    <p> Cover image via <a href="https://unsplash.com">Unsplash</a> </p>
-  </footer>
+    {% for post in site.posts limit:5%}
 
-</body>
-</html>
+    <article class="post_card post">
+      <header class="post_header">
+        <h2 class="post_title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title}}</a></h2>
+        <time class="post_date">{{ post.date | date: "%d %B %Y, %A" }}</time>
+      </header>
+      <div class="post_excerpt">
+        <p>
+          {% if post.description %}
+          {{ post.description}}
+          {% else %}
+          {{ post.excerpt }}
+          {% endif %} 
+          <a class="read-more" href="{{ post.url | prepend: site.baseurl }}"> »  </a>
+        </p> 
+      </div>
+      <footer class="post_meta">
+
+
+        {% if post.location %}
+        <span class="author-location">
+          <div data-icon="ei-location"></div>
+          <a href=https://www.google.com/maps/place/{{post.location}}">{{ post.location }}</a>
+        </span>
+        {% endif %}
+        <!--
+        {% for category in post.categories %}
+        <a href="{{"/category/" | append: category | prepend: site.baseurl }}">
+          <data data-icon="ei-archive"></data>
+          {{category}}</a>
+        {% endfor %}
+        -->
+
+        <!--
+        {% if post.author %}
+        <span class="author_meta">
+          <img src="{{site.baseurl}}/assets/img/{{post.author}}.jpg"></img>
+          <span>David Lin</span>
+        </span>
+        {% endif %}
+        -->
+
+        <!--p class="readmore">
+          <a href=""><data data-icon="ei-arrow-right"></data>Read this article  </a>
+        </p-->
+      </footer>
+      <hr/>
+    </article>
+    {% endfor %}
+
+    <div class="pagination older-post"><a href="./archive"><data data-icon="ei-arrow-right"></data> Archive  </a></div>
+  </div>
+</div>
