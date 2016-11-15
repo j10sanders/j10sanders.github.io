@@ -35,6 +35,7 @@ It's important to first think about how this feature actually works.  Essentiall
 
 ---
 # Let's code it up:
+
 I decided to work on the database model first:
 
 	class PWReset(Base):
