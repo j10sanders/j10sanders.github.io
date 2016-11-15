@@ -78,7 +78,10 @@ Here are some simple templates I made (Flask block content below):
 	    <button type="submit" class="btn btn-default">Submit</button>
 	</form>
 
-Next up, the randomized key needs to be made.  After messing around with a few methods of random string generation, I settled on a stupidly easy one that is built into python.  In an effort to modularize my code, especially in case I change the key generator to a different method later, I made this incredibly tiny keygenerator.py file:
+Next up, the randomized key needs to be made.  After messing around with a few methods of random string generation, I settled on a stupidly easy one that is built into python.  In an effort to modularize my code, especially in case I change the key generator to a different method later, I made this incredibly tiny
+
+
+### keygenerator.py file:
 
 	import uuid
 	
@@ -87,7 +90,11 @@ Next up, the randomized key needs to be made.  After messing around with a few m
 
 The uuid module in python was not meant to be a password-reset key generator, but the uuid4 method generates random 32 character strings that look like this: `df917a0f-ae9d-473f-812e-e4f8e72a6088`.  Try calling it a bunch of times - it makes a new random string every time!  If you have 1*10^18 keys generated, there is a 0.14% chance you will have a single duplicate key. So this is safe, super simple, and all that we need.
 
-Now that we have a key, let's assign it to the user in the PWReset table:
+Now that we have a key, let's assign it to the user in the 
+PWReset table.
+
+
+### views.py
 
 	@app.route("/pwresetrq", methods=["POST"])
 	def pwresetrq_post():
@@ -130,6 +137,9 @@ The comments in the code should be helpful for understanding what is happening h
 [Yagmail](https://github.com/kootenpv/yagmail) is a simple python package for sending email - I recommend checking it out, but you can use whatever email sending service you would like.
 
 Lastly, once the email is sent (with the key included in the URL), we need to give the user the ability to reset their password:
+
+
+### views.py cont.
 
 	@app.route("/pwreset/<id>", methods=["GET"])
 	def pwreset_get(id):
