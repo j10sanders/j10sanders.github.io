@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  How to Implement "Password Reset" in an app that doesn't have Flask Security.
-category: jekyll 
-description: If you want to implement a password recovery/reset function without messing with your entire apps architecture, you may find this helpful.
+title:  How to Implement Password-Reset Functionality in an app that doesn't have Flask Security.
+category: Flask, Python, Postgres 
+description: How to Implement Password-Reset functionality in an app that doesn't already have Flask Security.
 ---
 
 
