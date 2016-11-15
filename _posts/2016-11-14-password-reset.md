@@ -11,7 +11,7 @@ description: If you want to implement a password recovery/reset function without
 
 
 # Some Background:
-### (feel free to skip down to the tutorial)
+
 Last week, I moved my app to a new domain name, and was promptly admonished by my users…  They couldn't remember their passwords!  They had saved their passwords in their browsers, which didn't associate their passwords with the newly changed domain.  So I slapped myself in the forehead, changed the URL back, and decided it was time to finally add the most glaring feature my app currently lacked: the ability for users to change their passwords.
 
 If this was a new app, I would have started by using Flask-Security - a full featured package for handling security features in a Flask application.  It looks pretty slick.  However, my app was working perfectly fine, and I didn't want to change my database models to fit the Flask Security templates, nor did I want to start using WTForms, or the other set of features that Flask-Security uses.  
@@ -20,10 +20,7 @@ Instead, I decided to implement my own password recovery feature from the ground
 
 Since I wasn't able to find a good tutorial for implementing password recovery into an app that wasn't already made with Flask-Security, I hope this can be helpful to you if you are in a similar predicament. First, let's think about how password recovery works for most applications (and let's not worry about challenge questions, or extra security features for now).  Then, let's look at the code.
 
-
-
-
-
+---
 
 # Behind the scenes - how password recovery features actually work:
 
@@ -36,7 +33,7 @@ It's important to first think about how this feature actually works.  Essentiall
 5. The application verifies the key is the user's (and that it has not expired).
 6. The application allows the user to update their password.
 
-
+---
 # Let's code it up:
 I decided to work on the database model first:
 
@@ -173,8 +170,8 @@ Lastly, once the email is sent (with the key included in the URL), we need to gi
 In this example, I'm giving the user two days to reset their password after a key is generated.  This isn't the best method, since the total amount of time will vary, depending on how late in the day the user requests the password change.  You should feel free to make your own expiration time, and you could also decide to add the expiration time to the database instead of calling it in the python code. 
 
 
-That should be it!  If you don't have bootstrap "flashes" in your app, you will want to remove all the instance of "flash".  Otherwise, this should work in your Flask app without much fussing around.  Here is the app I implemented it in: https://github.com/j10sanders/crossword.
+That should be it!  If you don't have bootstrap "flashes" in your app, you will want to remove all the instance of "flash".  Otherwise, this should work in your Flask app without much fussing around.  Here is the app I implemented it in: [https://github.com/j10sanders/crossword](https://github.com/j10sanders/crossword).
 
-There are tons of other security features you could add.  What happens if the user forgets their email too?  How about implementing security questions?  How do you stop someone from pegging your email server with password reset requests?  I think these are all interesting questions that are worth pursuing.
+There are tons of other security features you could add.  What happens if the user forgets their email too?  How about implementing security questions?  How do you stop someone from pegging your email server with password reset requests?  With this basic model in place, these issues shouldn't be too difficult to add.
 
 
