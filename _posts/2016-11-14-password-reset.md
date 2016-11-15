@@ -53,9 +53,9 @@ There isn't a whole lot here… so hopefully if any of this doesn't make sense t
 
 Two new html templates need to be added the application: #1 for the user to request a password reset link be sent to their email address, and #2 for the user to update their password after clicking on the URL (which contains the random key).  
 
-Here are some simple templates I made:
+Here are some simple templates I made (Flask block content below):
 ### #1 pwresetrq.html:
-	{% block content %}
+
 	</br>
 	<h1>So you need to reset your password... </h1>
 	</br>
@@ -66,10 +66,10 @@ Here are some simple templates I made:
 	    </div>
 	    <button type="submit" class="btn btn-default">Submit</button>
 	</form>
-	{% endblock %}
+
 
 ### #2 pwreset.html:
-	{% block content %}
+
 	</br>
 	<h1>Hello, forgetful one... Change your password below:</h1>
 	<form role="form" method="POST">
@@ -80,7 +80,6 @@ Here are some simple templates I made:
 	    </div>
 	    <button type="submit" class="btn btn-default">Submit</button>
 	</form>
-	{% endblock %}
 
 Next up, the randomized key needs to be made.  After messing around with a few methods of random string generation, I settled on a stupidly easy one that is built into python.  In an effort to modularize my code, especially in case I change the key generator to a different method later, I made this incredibly tiny keygenerator.py file:
 
