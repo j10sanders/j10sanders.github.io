@@ -55,7 +55,6 @@ Two new html templates need to be added the application: #1 for the user to requ
 
 Here are some simple templates I made:
 ### #1 pwresetrq.html:
-	{% extends "base.html" %}
 	{% block content %}
 	</br>
 	<h1>So you need to reset your password... </h1>
@@ -70,7 +69,6 @@ Here are some simple templates I made:
 	{% endblock %}
 
 ### #2 pwreset.html:
-	{% extends "base.html" %}
 	{% block content %}
 	</br>
 	<h1>Hello, forgetful one... Change your password below:</h1>
