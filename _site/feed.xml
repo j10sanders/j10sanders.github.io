@@ -6,12 +6,12 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 14 Nov 2016 21:15:44 -0500</pubDate>
-    <lastBuildDate>Mon, 14 Nov 2016 21:15:44 -0500</lastBuildDate>
+    <pubDate>Tue, 15 Nov 2016 16:19:29 -0500</pubDate>
+    <lastBuildDate>Tue, 15 Nov 2016 16:19:29 -0500</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
-        <title>How to Implement &quot;Password Reset&quot; in an app that doesn't have Flask Security.</title>
+        <title>How to Implement Password-Reset Functionality in an app that doesn't have Flask Security.</title>
         <description>&lt;!--description--&gt;
 
 &lt;h1 id=&quot;some-background&quot;&gt;Some Background:&lt;/h1&gt;
@@ -41,6 +41,7 @@
 
 &lt;hr /&gt;
 &lt;h1 id=&quot;lets-code-it-up&quot;&gt;Let’s code it up:&lt;/h1&gt;
+
 &lt;p&gt;I decided to work on the database model first:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class PWReset(Base):
@@ -198,11 +199,11 @@ def pwreset_post(id):
 
 </description>
         <pubDate>Mon, 14 Nov 2016 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/jekyll/2016/11/14/password-reset.html</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll/2016/11/14/password-reset.html</guid>
+        <link>http://localhost:4000/flask,%20python,%20postgres/2016/11/14/password-reset.html</link>
+        <guid isPermaLink="true">http://localhost:4000/flask,%20python,%20postgres/2016/11/14/password-reset.html</guid>
         
         
-        <category>jekyll</category>
+        <category>Flask, Python, Postgres</category>
         
       </item>
     
