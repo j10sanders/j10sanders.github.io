@@ -19,6 +19,7 @@ I enrolled at RC and am enjoying spending all my time programming (primarily wit
 
 
 ---
+
 ## Experience
 
 #### Access Softek - Manager of NYC and Online Banking Tech Support/ IT/ Project Manager &emsp; <small>*2014 - 2016*</small>
