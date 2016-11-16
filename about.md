@@ -11,4 +11,4 @@ My name is Jonathan, and I'm a programmer because I like building things.  Here 
 
 The list of non-progamming things that I enjoy includes: [[ultimate](http://discny.org/), [mandolin](https://www.youtube.com/watch?v=5xeLXC5Ph98), [board games](https://en.wikipedia.org/wiki/Catan), [powerlifting](https://www.youtube.com/watch?v=TMIGc-PqsBc), [martinis](http://www.theatlantic.com/health/archive/2009/04/dry-martini-the-king-of-cocktails/16543/)].
 
-
+My full resume is here: <a href="{{ "/resume" | prepend: site.baseurl }}">Resume</a>
