@@ -60,8 +60,11 @@ I enrolled at RC and am enjoying spending all my time programming (primarily wit
 ---
 
 ## Open Source
+
 ##### [Proselint](https://github.com/amperser/proselint)
+
 ##### [Win The Mini](https://github.com/j10sanders/crossword)
+
 ##### [PyRadio](https://github.com/coderholic/pyradio)
 ---
 
