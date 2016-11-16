@@ -20,7 +20,9 @@ I enrolled at RC and am enjoying spending all my time programming (primarily wit
 
 ---
 ## Experience
+
 #### Access Softek - Manager of NYC and Online Banking Tech Support/ IT/ Project Manager &emsp; <small>*2014 - 2016*</small>
+
 `SQL` `Networking` `Mobile Development` `Project Management` `Agile`
 >I managed the NYC group of Tech Support specialists and all technical support for our Online Banking product. I had widespread responsibilities that included: training, troubleshooting (often on Credit Unions' servers), and managing projects.
 
@@ -33,8 +35,11 @@ I enrolled at RC and am enjoying spending all my time programming (primarily wit
 •	Manage Products: I managed multiple high-priority projects to fix bugs in live apps, including making them ADA compliant.  I also managed/set sprints for Online Banking features and bug fixes.
 
 ---
+
 #### Helm Society - Assistant to CEO/ Program Manager &emsp; <small>*2012 - 2014*</small>
+
 `Ruby on Rails` `Full-On Startup Hustle`
+
 > I worked alongside CEO Josh Klenoff in every stage of building this company.  I sold, managed accounts, recruited, and coded our account management processes.  I’m most proud of the last part.
 
 •	Managed: I was responsible for a team of three programmers who customized “microsite invitations” made with Ruby on Rails.
@@ -43,14 +48,17 @@ I enrolled at RC and am enjoying spending all my time programming (primarily wit
 
 
 ---
+
 ## Education
+
 #### NYU - BA in Philosopy with a Minor in Business Studies &emsp; <small>*2013*</small>
 
 
-#### Online (Coursera, Thinkful, Udacity) &emsp; <small>*2014 - current*</small>
+#### Online (Coursera, Thinkful, Udacity): &emsp; <small>*2014 - current*</small>
 `Python` `Full-Stack` `Discrete Math` `Algorithms` `Databases for Python` `Programming Languages`
 
 ---
+
 ## Open Source
 ##### [Proselint](https://github.com/amperser/proselint)
 ##### [Win The Mini](https://github.com/j10sanders/crossword)
