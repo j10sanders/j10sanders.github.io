@@ -5,7 +5,7 @@ permalink: /resume/
 ---
 
 > #### Recurser at Recurse Center
-> `Python`, `Flask/Django`, `Postgres/SQLAlchemy/SQL`, `Javascript`, `Full-Stack`
+> `Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack`
 
 ---
 I majored in Philosophy at NYU.
