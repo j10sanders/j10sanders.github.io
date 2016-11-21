@@ -5,6 +5,7 @@ permalink: /resume/
 ---
 
 > #### Recurser at Recurse Center
+> `Python`, `Flask/Django`, `Postgres/SQLAlchemy/SQL`, `Javascript`, `Full-Stack`
 
 ---
 I majored in Philosophy at NYU.
@@ -17,7 +18,6 @@ During my time at Access Softek, I spent my nights and weekends learning to prog
 
 I enrolled at RC and am enjoying spending all my time programming (primarily with Python): building web apps, contributing to Open Source projects, and pairing with people who are making interesting stuff.
 
-
 ---
 
 ## Experience
@@ -25,6 +25,7 @@ I enrolled at RC and am enjoying spending all my time programming (primarily wit
 #### Access Softek - Manager of NYC and Online Banking Tech Support/ IT/ Project Manager &emsp; <small>*2014 - 2016*</small>
 
 `SQL` `Networking` `Mobile Development` `Project Management` `Agile`
+
 >I managed the NYC group of Tech Support specialists and all technical support for our Online Banking product. I had widespread responsibilities that included: training, troubleshooting (often on Credit Unions' servers), and managing projects.
 
 •	Train: I was responsible for overseeing and providing the training of new tech-support staff.
