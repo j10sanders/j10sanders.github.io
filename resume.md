@@ -53,6 +53,18 @@ permalink: /resume/
 #### Online (Coursera, Thinkful, Udacity): &emsp; <small>*2014 - current*</small>
 `Python` `Full-Stack` `Discrete Math` `Algorithms` `Databases for Python` `Programming Languages`
 
+---
+
+
+## Skills & programming languages
+
+•	Python with web development in Flask and Django.
+
+•	Building and maintaining SQL databases, Postgres, SQLAlchemy
+
+•	Javascript, Ruby, Lisp/Racket, ML, Java
+
+•	HTML, CSS
 
 ---
 
