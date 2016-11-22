@@ -183,6 +183,6 @@ In this example, I'm giving the user two days to reset their password after a ke
 
 That should be it!  If you don't have bootstrap "flashes" in your app, you will want to remove all the instance of "flash".  Otherwise, this should work in your Flask app without much fussing around.  Here is the app I implemented it in: [https://github.com/j10sanders/crossword](https://github.com/j10sanders/crossword).
 
-There are tons of other security features you could add.  What happens if the user forgets their email too?  How about implementing security questions?  How do you stop someone from pegging your email server with password reset requests?  With this basic model in place, these issues shouldn't be too difficult to add.
+There are tons of other security features you could add.  What happens if the user forgets their email too?  How about implementing security questions?  How do you stop someone from pegging your email server with password reset requests?  With this basic model in place, these issues shouldn't be too difficult to address.
 
 
