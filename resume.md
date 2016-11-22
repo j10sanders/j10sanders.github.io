@@ -8,12 +8,12 @@ permalink: /resume/
 ## Experience
 
 
-####Participant at Recurse Center &emsp; <small>*October 2016 - current*</small>
+#### Participant at Recurse Center &emsp; <small>*October 2016 - current*</small>
 `Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack`
 
 •	I built [winthemini](https://github.com/j10sanders/crossword) - a social network for people who do the NYT Daily-Mini Crossword puzzle, contributed to open source projects like [proselint](http://proselint.com/), pair programmed on a bunch of projects, and learned Javascript. 
 
-
+---
 
 
 #### Access Softek - Manager of NYC and Online Banking Tech Support/ IT/ Project Manager &emsp; <small>*2014 - 2016*</small>
