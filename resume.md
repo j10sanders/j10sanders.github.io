@@ -9,7 +9,7 @@ permalink: /resume/
 
 
 #### Participant at Recurse Center &emsp; <small>*October 2016 - current*</small>
-`Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack`
+`Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack web development`
 
 •	I built [winthemini](https://github.com/j10sanders/crossword) - a social network for people who do the NYT Daily-Mini Crossword puzzle, contributed to open source projects like [proselint](http://proselint.com/), pair programmed on a bunch of projects, and learned Javascript. 
 
