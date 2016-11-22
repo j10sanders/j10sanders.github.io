@@ -34,6 +34,7 @@ It's important to first think about how this feature actually works.  Essentiall
 6. The application allows the user to update their password.
 
 ---
+
 # Let's code it up:
 
 I decided to work on the database model first:
