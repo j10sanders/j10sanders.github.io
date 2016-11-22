@@ -53,6 +53,7 @@ There isn't a whole lot here… so hopefully if any of this doesn't make sense t
 Two new html templates need to be added the application: #1 for the user to request a password reset link be sent to their email address, and #2 for the user to update their password after clicking on the URL (which contains the random key).  
 
 Here are some simple templates I made (Flask block content below):
+
 ### #1 pwresetrq.html:
 
 	</br>
