@@ -10,7 +10,7 @@ description: The Deeply OO Nature of Python Collections
 
 
 
-I was "cracking" a coding interview problem last week, and learned a fundamental truth about mutability in python.  Maybe you already understand this fundamental truth, or maybe you as naïve as I was last week.  To find out, see if you can tell why this code, which is supposed to **generate all subsets of a list**, fails miserably:
+I was "cracking" a coding interview problem last week, and learned a fundamental truth about mutability in python.  Maybe you already understand this fundamental truth, or maybe you're as naïve as I was last week.  To find out, see if you can tell why this code, which is supposed to **generate all subsets of a list**, fails miserably:
 
 	def subset(fullset, subsets=[[]]):
 		if len(fullset) > 0:
@@ -37,7 +37,7 @@ I wrote the above code with pen and paper, and was confident that it would work.
 	5. [[], [4], [3], [4, 3], [2], [4, 2], [3, 2], [4, 3, 2], [1], [4, 1], [3, 1], [4, 3, 1], [2, 1], [4, 2, 1], [3, 2, 1], [4, 3, 2, 1]]
 	
 
-In line 2, the program extended each element of line 1 (just an empty list) with the popped element (x) from `fullset`, and added that new list to the list from line 1.  In line 3, the same thing - 3 was added (extended) to each list from line 2, and then those new lists were added to the list from line 2.  The program recursively calls the subset method, until there are no more elements to pop from `fullset`. Line 5 has the full answer for `fullset = [1, 2, 3, 4]`
+In line 2, the program extended each element of line 1 (just an empty list) with the popped element (x) from `fullset`, and added that new list to the list from line 1.  In line 3, the same thing: 3 was added (extended) to each list from line 2, and then those new lists were added to the list from line 2.  The program recursively calls the subset method, until there are no more elements to pop from `fullset`. Line 5 has the full answer for `fullset = [1, 2, 3, 4]`
 
 
 This approach should work, but not with the implementation above.  Instead, it produces this output for `fullset = [1, 2, 3, 4]`
@@ -66,7 +66,7 @@ Here are the first few lines of output:
 	[[4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2]] newsubsets [[4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2]] subsets 
 
 
-WHY ARE THEY THE SAME AFTER I ONLY MUTATE NEWSUBSET?  I made sure that newsubsets is not referring to the same list as subsets, that is why I used newsubsets = **list**(subsets).  I could also have used newsubsets = **subsets[:]** and the same behavior would occur.   See [http://henry.precheur.org/python/copy_list](http://henry.precheur.org/python/copy_list) and [http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html](http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html) for more information about copying lists.  I was doing this part correctly...
+***Why are they the same after I only mutate newsubsets?***  I made sure that newsubsets is not referring to the same list as subsets, that is why I used newsubsets = **list**(subsets).  I could also have used newsubsets = **subsets[:]** and the same behavior would occur.   See [http://henry.precheur.org/python/copy_list](http://henry.precheur.org/python/copy_list) and [http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html](http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html) for more information about copying lists.  I was doing this part correctly...
 
 
 But as the print statement shows, the `i.extend(x)` seems to be mutating both lists, not just `newsubsets`. And the reason I made the list `newsubsets` was so that I can edit a copy of `subsets` (by extending it with 'x') without mutating the original.  Then I can add the edited list to the unedited list.
@@ -91,11 +91,13 @@ Notice in the second example, c was mutated -- even though I only appended 5 to 
 
 Why the difference in behavior?  Because Python is fundamentally object oriented.  I didn't directly mutate c -- I mutated one of the lists that c contains.  And likewise, I didn't actually append 5 to d, I appended 5 to a list that both d and c contain.
 
+---
+
 ## Moral / TLDR:
 
-If you have a copy of a list of lists, the child-lists are not copies -- they are the same objects in the original and copied-list.  So you can't edit the child-lists without mutating the original list of lists.  Actually, this goes for any collection of objects…
+If you simply copy a list of lists, the child-lists are not copies -- they are the same objects in the original and copied-list.  So you can't edit the child-lists without mutating the original list of lists.  Actually, this goes for any collection of objects…
 
-Unless you do something fancier, by making copies of the child lists... which is what I ended up doing by using ["copy" from the python library](https://docs.python.org/2/library/copy.html#copy.deepcopy).
+Unless you do something fancier, by making copies of the child-lists... which is what I ended up doing by using ["copy" from the python library](https://docs.python.org/2/library/copy.html#copy.deepcopy).
 *For collections that are mutable or contain mutable items, a copy is sometimes needed so one can change one copy without changing the other. This module provides generic shallow and deep copy operations.*
 
 
@@ -112,4 +114,4 @@ Unless you do something fancier, by making copies of the child lists... which is
 	        return subsets
 
 
-The modified code worked, and I learned about the fundamental object oriented nature of Python.  Debugging can be frustrating, but sometimes the enlightenment hits harder.  So make sure to know if your collection's copy contains objects that weren't explicitly copied, and the consequences this can have if you mutate them.
+The modified code worked, and I learned about the fundamental OO nature of Python.  Debugging can be frustrating, but sometimes the enlightenment hits hard!  Moral of the story: make sure to know if your collection's copy contains objects that weren't explicitly copied, and the consequences this can have if you mutate them.  If you need copies of the objects, try using Python's `copy` module.
