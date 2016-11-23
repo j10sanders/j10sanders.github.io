@@ -1,3 +1,5 @@
+\pagenumbering{gobble}
+
 # Jonathan Sanders
 
 ## Experience
