@@ -4,12 +4,13 @@ title: Jonathan Sanders
 permalink: /resume/
 
 ---
+<small>[download pdf](https://github.com/j10sanders/j10sanders.github.io/raw/master/JonathanSanders.pdf)</small>
 
 ## Experience
 
 
 #### Participant at Recurse Center &emsp; <small>*October 2016 - current*</small>
-`Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack web development`
+`Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack Web-Dev`
 
 •	I built [winthemini](https://github.com/j10sanders/crossword) - a social network for people who do the NYT Daily-Mini Crossword puzzle, contributed to open source projects like [proselint](http://proselint.com/), pair programmed on a bunch of projects, and learned Javascript. 
 

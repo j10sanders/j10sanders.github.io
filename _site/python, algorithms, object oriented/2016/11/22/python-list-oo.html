@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Deeply OO Nature of Python Collections</title>
+  <meta name="description" content="">
+
+  <!-- evil icon -->
+
+  <link rel="stylesheet" href="/assets/evil-icons.min.css">
+  <script src="/assets/evil-icons.min.js"></script>
+
+  <!-- todo: include this into main.css -->
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/python,%20algorithms,%20object%20oriented/2016/11/22/python-list-oo.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonathan Sanders" href="http://localhost:4000/feed.xml">
+</head>
+
+  <body>
+    <div class="page-content">
+      <div class="container">
+        <div class="three columns">
+          <header class="site-header">
+
+  <h2 class="logo"><a href="/">Jonathan Sanders</a></h2>
+
+  <div class="nav">
+    
+    <label for="menu-toggle" class="menu-icon">
+        <!--div data-icon="ei-navicon"></div-->
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+    </label>
+    <input type="checkbox" id="menu-toggle">
+
+    <div class="site-nav">
+      <nav>
+        <ul class="page-link">
+          <li><a href="/">Home</a></li>
+          <li><a href="/archive">Posts</a></li>
+          <li><a href="/about">About</a></li>
+		  <li><a href="/resume">Resume</a></li>
+          <li><a href="/feed.xml">RSS</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+        </div>
+
+        <div class="nine columns" style="z-index:100;">
+          <div class="wrapper">
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="artilce_header">
+    <h1 class="artilce_title" itemprop="name headline">The Deeply OO Nature of Python Collections</h1>
+    <p class="artilce_meta"><time datetime="2016-11-22T00:00:00-05:00" itemprop="datePublished">Nov 22, 2016</time></p>
+  </header>
+
+  <div class="article-content" itemprop="articleBody">
+    <!--description-->
+
+<p>I was “cracking” a coding interview problem last week, and learned a fundamental truth about mutability in python.  Maybe you already understand this fundamental truth, or maybe you’re as naïve as I was last week.  To find out, see if you can tell why this code, which is supposed to <strong>generate all subsets of a list</strong>, fails miserably:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def subset(fullset, subsets=[[]]):
+	if len(fullset) &gt; 0:
+	    x = [fullset.pop()]
+	    newsubsets = list(subsets)
+	    for i in newsubsets:
+	        i.extend(x)
+	    return subset(fullset, newsubsets+subsets)
+	else:
+	    return subsets
+</code></pre>
+</div>
+
+<p>If your first impulse it to try to write this with generators - good for you, but that’s not the point.  A generative approach leads to a more efficient program, but for this example, I am working with this implementation to illustrate a point about object orientation of Python.  The question is not, <em>“What is a faster implementation of the code?”</em> Instead, the question is, <em>“Why doesn’t this code work?”</em></p>
+
+<p>I wrote the above code with pen and paper, and was confident that it would work.  The basic idea is that to generate a list of subsets, you start with an empty set as the first subset.  Then for each element in the list, add the result of extending it to the previous list of subsets.  So this is how I imagined it would work:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>fullset = [1,2,3,4]
+
+1. [[]]
+2. [[], [4]]
+3. [[], [4], [3], [4, 3]]
+4. [[], [4], [3], [4, 3], [2], [4, 2], [3, 2], [4, 3, 2]]
+5. [[], [4], [3], [4, 3], [2], [4, 2], [3, 2], [4, 3, 2], [1], [4, 1], [3, 1], [4, 3, 1], [2, 1], [4, 2, 1], [3, 2, 1], [4, 3, 2, 1]]
+</code></pre>
+</div>
+
+<p>In line 2, the program extended each element of line 1 (just an empty list) with the popped element (x) from <code class="highlighter-rouge">fullset</code>, and added that new list to the list from line 1.  In line 3, the same thing: 3 was added (extended) to each list from line 2, and then those new lists were added to the list from line 2.  The program recursively calls the subset method, until there are no more elements to pop from <code class="highlighter-rouge">fullset</code>. Line 5 has the full answer for <code class="highlighter-rouge">fullset = [1, 2, 3, 4]</code></p>
+
+<p>This approach should work, but not with the implementation above.  Instead, it produces this output for <code class="highlighter-rouge">fullset = [1, 2, 3, 4]</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[[4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1]]
+</code></pre>
+</div>
+
+<p>Pretty ugly, right?<br />
+To figure out what was going on here, I added some print statements to see what <code class="highlighter-rouge">newsubsets</code> and <code class="highlighter-rouge">subsets</code> were equal to after I extended <code class="highlighter-rouge">newsubsets</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def subset(fullset, subsets=[[]]):
+    if len(fullset) &gt; 0:
+        x = [fullset.pop()]
+        newsubsets = list(subsets)
+        for i in newsubsets:
+            i.extend(x)
+        **print(newsubsets, "newsubsets", subsets, "subsets")**
+        return subset(fullset, newsubsets+subsets)
+    else:
+        return subsets
+</code></pre>
+</div>
+
+<p>Here are the first few lines of output:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[[4]] newsubsets [[4]] subsets
+[[4, 3, 3], [4, 3, 3]] newsubsets [[4, 3, 3], [4, 3, 3]] subsets
+[[4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2]] newsubsets [[4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2]] subsets 
+</code></pre>
+</div>
+
+<p><strong><em>Why are they the same after I only mutate newsubsets?</em></strong>  I made sure that newsubsets is not referring to the same list as subsets, that is why I used newsubsets = <strong>list</strong>(subsets).  I could also have used newsubsets = <strong>subsets[:]</strong> and the same behavior would occur.   See <a href="http://henry.precheur.org/python/copy_list">http://henry.precheur.org/python/copy_list</a> and <a href="http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html">http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html</a> for more information about copying lists.  I was doing this part correctly…</p>
+
+<p>But as the print statement shows, the <code class="highlighter-rouge">i.extend(x)</code> seems to be mutating both lists, not just <code class="highlighter-rouge">newsubsets</code>. And the reason I made the list <code class="highlighter-rouge">newsubsets</code> was so that I can edit a copy of <code class="highlighter-rouge">subsets</code> (by extending it with ‘x’) without mutating the original.  Then I can add the edited list to the unedited list.</p>
+
+<p>After some poking around, I came to the realization that I was mutating the lists inside the lists, and that this is fundamentally different than modifying the list itself.  Here is the distinction:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>a = [1, 2, 3, 4]
+b = list(a)
+b.append(5)
+print(a)
+&gt;&gt;&gt; [1, 2, 3, 4]
+</code></pre>
+</div>
+
+<p>vs:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>c = [[1, 2], [3, 4]]
+d = list(c)
+d[1].append(5)
+print(c)
+&gt;&gt;&gt;[[1, 2], [3, 4, 5]]
+</code></pre>
+</div>
+
+<p>Notice in the second example, c was mutated – even though I only appended 5 to d!</p>
+
+<p>Why the difference in behavior?  Because Python is fundamentally object oriented.  I didn’t directly mutate c – I mutated one of the lists that c contains.  And likewise, I didn’t actually append 5 to d, I appended 5 to a list that both d and c contain.</p>
+
+<hr />
+
+<h2 id="moral--tldr">Moral / TLDR:</h2>
+
+<p>If you simply copy a list of lists, the child-lists are not copies – they are the same objects in the original and copied-list.  So you can’t edit the child-lists without mutating the original list of lists.  Actually, this goes for any collection of objects…</p>
+
+<p>Unless you do something fancier, by making copies of the child-lists… which is what I ended up doing by using <a href="https://docs.python.org/2/library/copy.html#copy.deepcopy">“copy” from the python library</a>.
+<em>For collections that are mutable or contain mutable items, a copy is sometimes needed so one can change one copy without changing the other. This module provides generic shallow and deep copy operations.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import copy
+
+def subset(fullset, subsets=[[]]):
+    if len(fullset) &gt; 0:
+        x = [fullset.pop()]
+        **newsubsets = copy.deepcopy(subsets)**
+        for i in newsubsets:
+            i.extend(x)
+        return subset(fullset, subsets+newsubsets)
+    else:
+        return subsets
+</code></pre>
+</div>
+
+<p>The modified code worked, and I learned about the fundamental OO nature of Python.  Debugging can be frustrating, but sometimes the enlightenment hits hard!  Moral of the story: make sure to know if your collection’s copy contains objects that weren’t explicitly copied, and the consequences this can have if you mutate them.  If you need copies of the objects, try using Python’s <code class="highlighter-rouge">copy</code> module.</p>
+
+  </div>
+
+  <footer class="article-footer">
+
+  <section class="author">
+  <div class="authorimage box" style="background: url(/assets/img/Taffy.jpg)"></div>
+  <div class="authorinfo box">
+    <p>Jonathan Sanders</p>
+    <p class="bio">
+      Currently a Recurser at Recurse Center.
+    </p>
+  </div>
+</section>
+
+
+  </footer>
+
+  
+
+
+</article>
+
+          </div>
+        </div>
+      </div>
+      <footer class="site-footer">
+  <div class="container">
+    <div class="footer left column one-half">
+      <section class="small-font">
+        Theme <a href="https://github.com/wild-flame/jekyll-simple"> Simple </a> by <a href="http://wildflame.me">wildflame</a>
+        © 2016 
+        Powered by <a href="https://github.com/jekyll/jekyll">jekyll</a>
+      </section>
+    </div>
+
+    <div class="footer right column one-thirds">
+      <section class="small-font">
+        
+        <a href="https://github.com/j10sanders"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span></a>
+
+        
+        
+        <a href="https://twitter.com/jps458"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span></a>
+
+        
+      </section>
+    </div>
+  </div>
+</footer>
+ 
+    </div>
+  </body>
+</html>

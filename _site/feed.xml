@@ -6,9 +6,135 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 21 Nov 2016 17:48:39 -0500</pubDate>
-    <lastBuildDate>Mon, 21 Nov 2016 17:48:39 -0500</lastBuildDate>
+    <pubDate>Tue, 22 Nov 2016 19:03:09 -0500</pubDate>
+    <lastBuildDate>Tue, 22 Nov 2016 19:03:09 -0500</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>The Deeply OO Nature of Python Collections</title>
+        <description>&lt;!--description--&gt;
+
+&lt;p&gt;I was “cracking” a coding interview problem last week, and learned a fundamental truth about mutability in python.  Maybe you already understand this fundamental truth, or maybe you’re as naïve as I was last week.  To find out, see if you can tell why this code, which is supposed to &lt;strong&gt;generate all subsets of a list&lt;/strong&gt;, fails miserably:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def subset(fullset, subsets=[[]]):
+	if len(fullset) &amp;gt; 0:
+	    x = [fullset.pop()]
+	    newsubsets = list(subsets)
+	    for i in newsubsets:
+	        i.extend(x)
+	    return subset(fullset, newsubsets+subsets)
+	else:
+	    return subsets
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If your first impulse it to try to write this with generators - good for you, but that’s not the point.  A generative approach leads to a more efficient program, but for this example, I am working with this implementation to illustrate a point about object orientation of Python.  The question is not, &lt;em&gt;“What is a faster implementation of the code?”&lt;/em&gt; Instead, the question is, &lt;em&gt;“Why doesn’t this code work?”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I wrote the above code with pen and paper, and was confident that it would work.  The basic idea is that to generate a list of subsets, you start with an empty set as the first subset.  Then for each element in the list, add the result of extending it to the previous list of subsets.  So this is how I imagined it would work:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fullset = [1,2,3,4]
+
+1. [[]]
+2. [[], [4]]
+3. [[], [4], [3], [4, 3]]
+4. [[], [4], [3], [4, 3], [2], [4, 2], [3, 2], [4, 3, 2]]
+5. [[], [4], [3], [4, 3], [2], [4, 2], [3, 2], [4, 3, 2], [1], [4, 1], [3, 1], [4, 3, 1], [2, 1], [4, 2, 1], [3, 2, 1], [4, 3, 2, 1]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In line 2, the program extended each element of line 1 (just an empty list) with the popped element (x) from &lt;code class=&quot;highlighter-rouge&quot;&gt;fullset&lt;/code&gt;, and added that new list to the list from line 1.  In line 3, the same thing: 3 was added (extended) to each list from line 2, and then those new lists were added to the list from line 2.  The program recursively calls the subset method, until there are no more elements to pop from &lt;code class=&quot;highlighter-rouge&quot;&gt;fullset&lt;/code&gt;. Line 5 has the full answer for &lt;code class=&quot;highlighter-rouge&quot;&gt;fullset = [1, 2, 3, 4]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This approach should work, but not with the implementation above.  Instead, it produces this output for &lt;code class=&quot;highlighter-rouge&quot;&gt;fullset = [1, 2, 3, 4]&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[[4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1], [4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Pretty ugly, right?&lt;br /&gt;
+To figure out what was going on here, I added some print statements to see what &lt;code class=&quot;highlighter-rouge&quot;&gt;newsubsets&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;subsets&lt;/code&gt; were equal to after I extended &lt;code class=&quot;highlighter-rouge&quot;&gt;newsubsets&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def subset(fullset, subsets=[[]]):
+    if len(fullset) &amp;gt; 0:
+        x = [fullset.pop()]
+        newsubsets = list(subsets)
+        for i in newsubsets:
+            i.extend(x)
+        **print(newsubsets, &quot;newsubsets&quot;, subsets, &quot;subsets&quot;)**
+        return subset(fullset, newsubsets+subsets)
+    else:
+        return subsets
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here are the first few lines of output:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[[4]] newsubsets [[4]] subsets
+[[4, 3, 3], [4, 3, 3]] newsubsets [[4, 3, 3], [4, 3, 3]] subsets
+[[4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2]] newsubsets [[4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2], [4, 3, 3, 2, 2, 2, 2]] subsets 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Why are they the same after I only mutate newsubsets?&lt;/em&gt;&lt;/strong&gt;  I made sure that newsubsets is not referring to the same list as subsets, that is why I used newsubsets = &lt;strong&gt;list&lt;/strong&gt;(subsets).  I could also have used newsubsets = &lt;strong&gt;subsets[:]&lt;/strong&gt; and the same behavior would occur.   See &lt;a href=&quot;http://henry.precheur.org/python/copy_list&quot;&gt;http://henry.precheur.org/python/copy_list&lt;/a&gt; and &lt;a href=&quot;http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html&quot;&gt;http://www-inst.eecs.berkeley.edu/~selfpace/cs9honline/Q2/mutation.html&lt;/a&gt; for more information about copying lists.  I was doing this part correctly…&lt;/p&gt;
+
+&lt;p&gt;But as the print statement shows, the &lt;code class=&quot;highlighter-rouge&quot;&gt;i.extend(x)&lt;/code&gt; seems to be mutating both lists, not just &lt;code class=&quot;highlighter-rouge&quot;&gt;newsubsets&lt;/code&gt;. And the reason I made the list &lt;code class=&quot;highlighter-rouge&quot;&gt;newsubsets&lt;/code&gt; was so that I can edit a copy of &lt;code class=&quot;highlighter-rouge&quot;&gt;subsets&lt;/code&gt; (by extending it with ‘x’) without mutating the original.  Then I can add the edited list to the unedited list.&lt;/p&gt;
+
+&lt;p&gt;After some poking around, I came to the realization that I was mutating the lists inside the lists, and that this is fundamentally different than modifying the list itself.  Here is the distinction:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a = [1, 2, 3, 4]
+b = list(a)
+b.append(5)
+print(a)
+&amp;gt;&amp;gt;&amp;gt; [1, 2, 3, 4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;vs:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;c = [[1, 2], [3, 4]]
+d = list(c)
+d[1].append(5)
+print(c)
+&amp;gt;&amp;gt;&amp;gt;[[1, 2], [3, 4, 5]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice in the second example, c was mutated – even though I only appended 5 to d!&lt;/p&gt;
+
+&lt;p&gt;Why the difference in behavior?  Because Python is fundamentally object oriented.  I didn’t directly mutate c – I mutated one of the lists that c contains.  And likewise, I didn’t actually append 5 to d, I appended 5 to a list that both d and c contain.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;moral--tldr&quot;&gt;Moral / TLDR:&lt;/h2&gt;
+
+&lt;p&gt;If you simply copy a list of lists, the child-lists are not copies – they are the same objects in the original and copied-list.  So you can’t edit the child-lists without mutating the original list of lists.  Actually, this goes for any collection of objects…&lt;/p&gt;
+
+&lt;p&gt;Unless you do something fancier, by making copies of the child-lists… which is what I ended up doing by using &lt;a href=&quot;https://docs.python.org/2/library/copy.html#copy.deepcopy&quot;&gt;“copy” from the python library&lt;/a&gt;.
+&lt;em&gt;For collections that are mutable or contain mutable items, a copy is sometimes needed so one can change one copy without changing the other. This module provides generic shallow and deep copy operations.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import copy
+
+def subset(fullset, subsets=[[]]):
+    if len(fullset) &amp;gt; 0:
+        x = [fullset.pop()]
+        **newsubsets = copy.deepcopy(subsets)**
+        for i in newsubsets:
+            i.extend(x)
+        return subset(fullset, subsets+newsubsets)
+    else:
+        return subsets
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The modified code worked, and I learned about the fundamental OO nature of Python.  Debugging can be frustrating, but sometimes the enlightenment hits hard!  Moral of the story: make sure to know if your collection’s copy contains objects that weren’t explicitly copied, and the consequences this can have if you mutate them.  If you need copies of the objects, try using Python’s &lt;code class=&quot;highlighter-rouge&quot;&gt;copy&lt;/code&gt; module.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 22 Nov 2016 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/python,%20algorithms,%20object%20oriented/2016/11/22/python-list-oo.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python,%20algorithms,%20object%20oriented/2016/11/22/python-list-oo.html</guid>
+        
+        
+        <category>Python, Algorithms, Object Oriented</category>
+        
+      </item>
     
       <item>
         <title>How to Implement Password-Reset Functionality in an app that doesn't have Flask Security.</title>
@@ -40,6 +166,7 @@
 &lt;/ol&gt;
 
 &lt;hr /&gt;
+
 &lt;h1 id=&quot;lets-code-it-up&quot;&gt;Let’s code it up:&lt;/h1&gt;
 
 &lt;p&gt;I decided to work on the database model first:&lt;/p&gt;
@@ -60,6 +187,7 @@
 &lt;p&gt;Two new html templates need to be added the application: #1 for the user to request a password reset link be sent to their email address, and #2 for the user to update their password after clicking on the URL (which contains the random key).&lt;/p&gt;
 
 &lt;p&gt;Here are some simple templates I made (Flask block content below):&lt;/p&gt;
+
 &lt;h3 id=&quot;pwresetrqhtml&quot;&gt;#1 pwresetrq.html:&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;/br&amp;gt;
@@ -195,7 +323,7 @@ def pwreset_post(id):
 
 &lt;p&gt;That should be it!  If you don’t have bootstrap “flashes” in your app, you will want to remove all the instance of “flash”.  Otherwise, this should work in your Flask app without much fussing around.  Here is the app I implemented it in: &lt;a href=&quot;https://github.com/j10sanders/crossword&quot;&gt;https://github.com/j10sanders/crossword&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;There are tons of other security features you could add.  What happens if the user forgets their email too?  How about implementing security questions?  How do you stop someone from pegging your email server with password reset requests?  With this basic model in place, these issues shouldn’t be too difficult to add.&lt;/p&gt;
+&lt;p&gt;There are tons of other security features you could add.  What happens if the user forgets their email too?  How about implementing security questions?  How do you stop someone from pegging your email server with password reset requests?  With this basic model in place, these issues shouldn’t be too difficult to address.&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 14 Nov 2016 00:00:00 -0500</pubDate>
