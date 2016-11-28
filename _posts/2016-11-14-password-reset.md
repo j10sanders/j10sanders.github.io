@@ -2,7 +2,7 @@
 layout: post
 title:  How to Implement Password-Reset Functionality in an app that doesn't have Flask Security.
 category: Flask, Python, Postgres 
-description: How to Implement Password-Reset functionality in an app that doesn't already have Flask Security.
+description: Building password-reset from the ground up
 ---
 
 
@@ -39,14 +39,16 @@ It's important to first think about how this feature actually works.  Essentiall
 
 I decided to work on the database model first:
 
-	class PWReset(Base):
-	    __tablename__ = "pwreset"
-	    id = Column(Integer, primary_key=True)
-	    reset_key = Column(String(128), unique=True)
-	    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-	    datetime = Column(DateTime(timezone=True), default=datetime.datetime.now)
-	    user = relationship(User, lazy='joined')
-	    has_activated = Column(Boolean, default=False)
+{% highlight python %}
+class PWReset(Base):
+    __tablename__ = "pwreset"
+    id = Column(Integer, primary_key=True)
+    reset_key = Column(String(128), unique=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    datetime = Column(DateTime(timezone=True), default=datetime.datetime.now)
+    user = relationship(User, lazy='joined')
+    has_activated = Column(Boolean, default=False)
+{% endhighlight %}
 
 There isn't a whole lot here… so hopefully if any of this doesn't make sense to you, it will by the end of this tutorial.  Since we've added a new database model, a database migration will be necessary. 
 
@@ -86,10 +88,12 @@ Next up, the randomized key needs to be made.  After messing around with a few m
 
 ### keygenerator.py file:
 
-	import uuid
-	
-	def make_key():
-	    return uuid.uuid4()
+{% highlight python %}
+import uuid
+
+def make_key():
+    return uuid.uuid4()
+{% endhighlight %}
 
 The uuid module in python was not meant to be a password-reset key generator, but the uuid4 method generates random 32 character strings that look like this: `df917a0f-ae9d-473f-812e-e4f8e72a6088`.  Try calling it a bunch of times - it makes a new random string every time!  If you have 1*10^18 keys generated, there is a 0.14% chance you will have a single duplicate key. So this is safe, super simple, and all that we need.
 
@@ -99,41 +103,43 @@ PWReset table.
 
 ### views.py
 
-	@app.route("/pwresetrq", methods=["POST"])
-	def pwresetrq_post():
-	    if session.query(User).filter_by(email=request.form["email"]).first():
-	           user = session.query(User).filter_by(email=request.form["email"]).one()
-	       
-	        #check if user already has reset their password, so they will update the current key instead of generating a separate entry in the table.
-	        if session.query(PWReset).filter_by(user_id = user.id).first():
-	            pwalready = session.query(PWReset).filter_by(user_id = user.id).first()
-		#if the key hasn't been used yet, just send the same key.
-	            if pwalready.has_activated == False:
-	                pwalready.datetime = datetime.now()
-	                key = pwalready.reset_key
-	            else:    
-	                key = keygenerator.make_key()
-	                pwalready.reset_key = key
-	                pwalready.datetime = datetime.now()
-	                pwalready.has_activated = False
-	        else:  
-	            key = keygenerator.make_key()
-	            user_reset = PWReset(reset_key=key, user_id = user.id)
-	            session.add(user_reset)
-	        session.commit()
+{% highlight python %}
+@app.route("/pwresetrq", methods=["POST"])
+def pwresetrq_post():
+    if session.query(User).filter_by(email=request.form["email"]).first():
+           user = session.query(User).filter_by(email=request.form["email"]).one()
+       
+        #check if user already has reset their password, so they will update the current key instead of generating a separate entry in the table.
+        if session.query(PWReset).filter_by(user_id = user.id).first():
+            pwalready = session.query(PWReset).filter_by(user_id = user.id).first()
+	#if the key hasn't been used yet, just send the same key.
+            if pwalready.has_activated == False:
+                pwalready.datetime = datetime.now()
+                key = pwalready.reset_key
+            else:    
+                key = keygenerator.make_key()
+                pwalready.reset_key = key
+                pwalready.datetime = datetime.now()
+                pwalready.has_activated = False
+        else:  
+            key = keygenerator.make_key()
+            user_reset = PWReset(reset_key=key, user_id = user.id)
+            session.add(user_reset)
+        session.commit()
+
+	##Add Yagmail code here
+	#Here is mine:
+	''' 
+	yag = yagmail.SMTP()
+	        contents = ['Please go to this URL to reset your password:', "APP URL HERE" + url_for("pwreset_get",  id = (str(key)))]
+	        yag.send('request.form["email"]', 'Reset your password', contents)
+	flash(user.name + ", check your email for a link to reset your password.  It expires in a <amount of time here>!", "success")'''
 	
-		##Add Yagmail code here
-		#Here is mine:
-		''' 
-		yag = yagmail.SMTP()
-		        contents = ['Please go to this URL to reset your password:', "APP URL HERE" + url_for("pwreset_get",  id = (str(key)))]
-		        yag.send('request.form["email"]', 'Reset your password', contents)
-		flash(user.name + ", check your email for a link to reset your password.  It expires in a <amount of time here>!", "success")'''
-		
-	        return redirect(url_for("entries"))
-	    else:
-	        flash("Your email was never registered.", "danger")
-	        return redirect(url_for("pwresetrq_get"))
+        return redirect(url_for("entries"))
+    else:
+        flash("Your email was never registered.", "danger")
+        return redirect(url_for("pwresetrq_get"))
+{% endhighlight %}
 	
 The comments in the code should be helpful for understanding what is happening here: check if the user already has had a pw reset key -- if so, update that row in the database (we don't want the database getting filled with old reset keys).  If the key hasn't been activated yet, reset the datetime (so it doesn't expire) and send the same key.  
 
@@ -143,42 +149,42 @@ Lastly, once the email is sent (with the key included in the URL), we need to gi
 
 
 ### views.py cont.
+{% highlight python %}
+@app.route("/pwreset/<id>", methods=["GET"])
+def pwreset_get(id):
+    key = id
+    pwresetkey = session.query(PWReset).filter_by(reset_key=id).one()
+    EST = pytz.timezone('US/Eastern')
+    x = datetime.utcnow().replace(tzinfo=pytz.utc).date()- timedelta(days=2)
+    if pwresetkey.has_activated == True:
+        flash("You already reset your password with the URL you are using.  If you need to reset your password again, please make a new request here.", "danger")
+        return redirect(url_for("pwresetrq_get"))
+    if pwresetkey.datetime.replace(tzinfo=pytz.utc).astimezone(EST).date() < x:
+        flash("Your password reset link expired.  Please generate a new one here.", "danger")
+        return redirect(url_for("pwresetrq_get"))
+    return render_template('pwreset.html', id = key)
 
-	@app.route("/pwreset/<id>", methods=["GET"])
-	def pwreset_get(id):
-	    key = id
-	    pwresetkey = session.query(PWReset).filter_by(reset_key=id).one()
-	    EST = pytz.timezone('US/Eastern')
-	    x = datetime.utcnow().replace(tzinfo=pytz.utc).date()- timedelta(days=2)
-	    if pwresetkey.has_activated == True:
-	        flash("You already reset your password with the URL you are using.  If you need to reset your password again, please make a new request here.", "danger")
-	        return redirect(url_for("pwresetrq_get"))
-	    if pwresetkey.datetime.replace(tzinfo=pytz.utc).astimezone(EST).date() < x:
-	        flash("Your password reset link expired.  Please generate a new one here.", "danger")
-	        return redirect(url_for("pwresetrq_get"))
-	    return render_template('pwreset.html', id = key)
-
-	@app.route("/pwreset/<id>", methods=["POST"])
-	def pwreset_post(id):
-	    if request.form["password"] != request.form["password2"]:
-	        flash("Your password and password verification didn't match.", "danger")
-	        return redirect(url_for("pwreset_get", id = id))
-	    if len(request.form["password"]) < 8:
-	        flash("Your password needs to be at least 8 characters", "danger")
-	        return redirect(url_for("pwreset_get", id = id))
-	    user_reset = session.query(PWReset).filter_by(reset_key=id).one()
-	       try:
-	        session.query(User).filter_by(id = user_reset.user_id).update({'password': generate_password_hash(request.form["password"])})
-	        session.commit()
-	    except IntegrityError:
-	        flash("Something went wrong", "danger")
-	        session.rollback()
-	        return redirect(url_for("entries"))
-	    user_reset.has_activated = True
-	    session.commit()
-	    flash("Your new password is saved.", "success")
-	    return redirect(url_for("entries"))
-
+@app.route("/pwreset/<id>", methods=["POST"])
+def pwreset_post(id):
+    if request.form["password"] != request.form["password2"]:
+        flash("Your password and password verification didn't match.", "danger")
+        return redirect(url_for("pwreset_get", id = id))
+    if len(request.form["password"]) < 8:
+        flash("Your password needs to be at least 8 characters", "danger")
+        return redirect(url_for("pwreset_get", id = id))
+    user_reset = session.query(PWReset).filter_by(reset_key=id).one()
+       try:
+        session.query(User).filter_by(id = user_reset.user_id).update({'password': generate_password_hash(request.form["password"])})
+        session.commit()
+    except IntegrityError:
+        flash("Something went wrong", "danger")
+        session.rollback()
+        return redirect(url_for("entries"))
+    user_reset.has_activated = True
+    session.commit()
+    flash("Your new password is saved.", "success")
+    return redirect(url_for("entries"))
+{% endhighlight %}
 
 In this example, I'm giving the user two days to reset their password after a key is generated.  This isn't the best method, since the total amount of time will vary, depending on how late in the day the user requests the password change.  You should feel free to make your own expiration time, and you could also decide to add the expiration time to the database instead of calling it in the python code. 
 

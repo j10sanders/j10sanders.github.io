@@ -5,7 +5,7 @@
 ## Experience
 
 
-#### Participant at Recurse Center  <small>*October 2016 - current*</small>
+#### Participant at Recurse Center  <small>*September 2016 - present*</small>
 `Python`, `Flask/Django`, `Postgres/SQLAlchemy/SQL`, `Javascript`, `Full-Stack Web-Development`
 
 I built [winthemini](https://github.com/j10sanders/crossword) - a social network for people who do the NYT Daily-Mini Crossword puzzle, contributed to open source projects like [proselint](http://proselint.com/), pair programmed on a bunch of projects, and learned Javascript. 
@@ -48,3 +48,4 @@ I worked alongside CEO Josh Klenoff in every stage of building this company.  I 
 - Building and maintaining SQL databases, Postgres, SQLAlchemy
 - Javascript, Ruby, Lisp/Racket, ML, Java
 - HTML, CSS
+

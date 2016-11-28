@@ -14,6 +14,7 @@
   <script src="/assets/evil-icons.min.js"></script>
 
   <!-- todo: include this into main.css -->
+  <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://localhost:4000/python,%20algorithms,%20object%20oriented/2016/11/22/python-list-oo.html">
@@ -71,24 +72,21 @@
 
 <p>I was “cracking” a coding interview problem last week, and learned a fundamental truth about mutability in python.  Maybe you already understand this fundamental truth, or maybe you’re as naïve as I was last week.  To find out, see if you can tell why this code, which is supposed to <strong>generate all subsets of a list</strong>, fails miserably:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>def subset(fullset, subsets=[[]]):
-	if len(fullset) &gt; 0:
-	    x = [fullset.pop()]
-	    newsubsets = list(subsets)
-	    for i in newsubsets:
-	        i.extend(x)
-	    return subset(fullset, newsubsets+subsets)
-	else:
-	    return subsets
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="n">fullset</span><span class="p">,</span> <span class="n">subsets</span><span class="o">=</span><span class="p">[[]]):</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fullset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+	    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">fullset</span><span class="o">.</span><span class="n">pop</span><span class="p">()]</span>
+	    <span class="n">newsubsets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subsets</span><span class="p">)</span>
+	    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">newsubsets</span><span class="p">:</span>
+	        <span class="n">i</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="n">subset</span><span class="p">(</span><span class="n">fullset</span><span class="p">,</span> <span class="n">newsubsets</span><span class="o">+</span><span class="n">subsets</span><span class="p">)</span>
+	<span class="k">else</span><span class="p">:</span>
+	    <span class="k">return</span> <span class="n">subsets</span></code></pre></figure>
 
 <p>If your first impulse it to try to write this with generators - good for you, but that’s not the point.  A generative approach leads to a more efficient program, but for this example, I am working with this implementation to illustrate a point about object orientation of Python.  The question is not, <em>“What is a faster implementation of the code?”</em> Instead, the question is, <em>“Why doesn’t this code work?”</em></p>
 
 <p>I wrote the above code with pen and paper, and was confident that it would work.  The basic idea is that to generate a list of subsets, you start with an empty set as the first subset.  Then for each element in the list, add the result of extending it to the previous list of subsets.  So this is how I imagined it would work:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>fullset = [1,2,3,4]
-
+<div class="highlighter-rouge"><pre class="highlight"><code>fullset = [1,2,3,4]:
 1. [[]]
 2. [[], [4]]
 3. [[], [4], [3], [4, 3]]
@@ -108,18 +106,16 @@
 <p>Pretty ugly, right?<br />
 To figure out what was going on here, I added some print statements to see what <code class="highlighter-rouge">newsubsets</code> and <code class="highlighter-rouge">subsets</code> were equal to after I extended <code class="highlighter-rouge">newsubsets</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>def subset(fullset, subsets=[[]]):
-    if len(fullset) &gt; 0:
-        x = [fullset.pop()]
-        newsubsets = list(subsets)
-        for i in newsubsets:
-            i.extend(x)
-        **print(newsubsets, "newsubsets", subsets, "subsets")**
-        return subset(fullset, newsubsets+subsets)
-    else:
-        return subsets
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="n">fullset</span><span class="p">,</span> <span class="n">subsets</span><span class="o">=</span><span class="p">[[]]):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fullset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">fullset</span><span class="o">.</span><span class="n">pop</span><span class="p">()]</span>
+        <span class="n">newsubsets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subsets</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">newsubsets</span><span class="p">:</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="o">**</span><span class="k">print</span><span class="p">(</span><span class="n">newsubsets</span><span class="p">,</span> <span class="s">"newsubsets"</span><span class="p">,</span> <span class="n">subsets</span><span class="p">,</span> <span class="s">"subsets"</span><span class="p">)</span><span class="o">**</span>
+        <span class="k">return</span> <span class="n">subset</span><span class="p">(</span><span class="n">fullset</span><span class="p">,</span> <span class="n">newsubsets</span><span class="o">+</span><span class="n">subsets</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">subsets</span></code></pre></figure>
 
 <p>Here are the first few lines of output:</p>
 
@@ -135,23 +131,19 @@ To figure out what was going on here, I added some print statements to see what 
 
 <p>After some poking around, I came to the realization that I was mutating the lists inside the lists, and that this is fundamentally different than modifying the list itself.  Here is the distinction:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>a = [1, 2, 3, 4]
-b = list(a)
-b.append(5)
-print(a)
-&gt;&gt;&gt; [1, 2, 3, 4]
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span></code></pre></figure>
 
 <p>vs:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>c = [[1, 2], [3, 4]]
-d = list(c)
-d[1].append(5)
-print(c)
-&gt;&gt;&gt;[[1, 2], [3, 4, 5]]
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span></code></pre></figure>
 
 <p>Notice in the second example, c was mutated – even though I only appended 5 to d!</p>
 
@@ -166,19 +158,17 @@ print(c)
 <p>Unless you do something fancier, by making copies of the child-lists… which is what I ended up doing by using <a href="https://docs.python.org/2/library/copy.html#copy.deepcopy">“copy” from the python library</a>.
 <em>For collections that are mutable or contain mutable items, a copy is sometimes needed so one can change one copy without changing the other. This module provides generic shallow and deep copy operations.</em></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import copy
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">copy</span>
 
-def subset(fullset, subsets=[[]]):
-    if len(fullset) &gt; 0:
-        x = [fullset.pop()]
-        **newsubsets = copy.deepcopy(subsets)**
-        for i in newsubsets:
-            i.extend(x)
-        return subset(fullset, subsets+newsubsets)
-    else:
-        return subsets
-</code></pre>
-</div>
+<span class="k">def</span> <span class="nf">subset</span><span class="p">(</span><span class="n">fullset</span><span class="p">,</span> <span class="n">subsets</span><span class="o">=</span><span class="p">[[]]):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fullset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">fullset</span><span class="o">.</span><span class="n">pop</span><span class="p">()]</span>
+        <span class="o">**</span><span class="n">newsubsets</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">subsets</span><span class="p">)</span><span class="o">**</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">newsubsets</span><span class="p">:</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">subset</span><span class="p">(</span><span class="n">fullset</span><span class="p">,</span> <span class="n">subsets</span><span class="o">+</span><span class="n">newsubsets</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">subsets</span></code></pre></figure>
 
 <p>The modified code worked, and I learned about the fundamental OO nature of Python.  Debugging can be frustrating, but sometimes the enlightenment hits hard!  Moral of the story: make sure to know if your collection’s copy contains objects that weren’t explicitly copied, and the consequences this can have if you mutate them.  If you need copies of the objects, try using Python’s <code class="highlighter-rouge">copy</code> module.</p>
 
