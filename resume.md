@@ -27,7 +27,7 @@ permalink: /resume/
 
 •	Managed the NYC tech support team and all tech support working with our Online Banking product.
 
-•	Managed projects, such as the development of our ticket ticket-tracking software ([Request Tracker](https://bestpractical.com/request-tracker)).  I also led our internal transition from Redmine to Jira, and our transition from gotomeeting to screenconnect.
+•	Managed projects, such as the development of our ticket ticket-tracking software ([Request Tracker](https://bestpractical.com/request-tracker)).  I also led our internal transition from Redmine to Jira, and our transition from GoToMeeting to ScreenConnect.
 
 •	Managed product development for fixing bugs in live apps and making them ADA compliant.  I also managed/set sprints for Online Banking features and bug fixes.
 
@@ -39,7 +39,7 @@ permalink: /resume/
 
 > I worked alongside CEO Josh Klenoff in every stage of building this company.  I sold, managed accounts, recruited, and coded our account management processes.
 
-•	Managed a team of three programmers who customized “microsite invitations” made with Ruby on Rails.
+•	Managed a team of three programmers who customized “micro-site invitations” made with Ruby on Rails.
 
 •	Built company processes, including a system that ensured salesmen had a sufficient funnel of leads every day -- by delegating simple email responses and call-scheduling to an offsite team.  I also created an extensive CRM using just Google Docs (I believe it is still in use).
 
@@ -48,7 +48,7 @@ permalink: /resume/
 
 ## Education
 
-#### NYU - BA in Philosopy with a Minor in Business Studies &emsp; <small>*2013*</small>
+#### NYU - BA in Philosophy with a Minor in Business Studies &emsp; <small>*2013*</small>
 
 
 #### Online (Coursera, Thinkful, Udacity): &emsp; <small>*2014 - current*</small>
