@@ -155,11 +155,11 @@ def pwreset_get(id):
     key = id
     pwresetkey = session.query(PWReset).filter_by(reset_key=id).one()
     EST = pytz.timezone('US/Eastern')
-    x = datetime.utcnow().replace(tzinfo=pytz.utc).date()- timedelta(days=2)
+    generated_by = datetime.utcnow().replace(tzinfo=pytz.utc) - timedelta(hours=24)
     if pwresetkey.has_activated == True:
         flash("You already reset your password with the URL you are using.  If you need to reset your password again, please make a new request here.", "danger")
         return redirect(url_for("pwresetrq_get"))
-    if pwresetkey.datetime.replace(tzinfo=pytz.utc).astimezone(EST).date() < x:
+    if pwresetkey.datetime.replace(tzinfo=pytz.utc) < generated_by:
         flash("Your password reset link expired.  Please generate a new one here.", "danger")
         return redirect(url_for("pwresetrq_get"))
     return render_template('pwreset.html', id = key)
@@ -186,7 +186,7 @@ def pwreset_post(id):
     return redirect(url_for("entries"))
 {% endhighlight %}
 
-In this example, I'm giving the user two days to reset their password after a key is generated.  This isn't the best method, since the total amount of time will vary, depending on how late in the day the user requests the password change.  You should feel free to make your own expiration time, and you could also decide to add the expiration time to the database instead of calling it in the python code. 
+In this example, I'm giving the user 24 hours to reset their password after a key is generated. You should feel free to make your own expiration time limit, and you could also decide to add the expiration time to the database instead of creating it in the python code.
 
 
 That should be it!  If you don't have bootstrap "flashes" in your app, you will want to remove all the instance of "flash".  Otherwise, this should work in your Flask app without much fussing around.  Here is the app I implemented it in: [https://github.com/j10sanders/crossword](https://github.com/j10sanders/crossword).
