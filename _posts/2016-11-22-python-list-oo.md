@@ -26,7 +26,7 @@ def subset(fullset, subsets=[[]]):
 
 
 
-If your first impulse it to try to write this with generators - good for you, but that's not the point.  A generative approach leads to a more efficient program, but for this example, I am working with this implementation to illustrate a point about object orientation of Python.  The question is not, *"What is a faster implementation of the code?"* Instead, the question is, *"Why doesn't this code work?"*  
+If your first impulse it to try to write this with generators - good for you, that approach should lead to a more efficient program, but for this example, I am working with this implementation to illustrate a point about the object orientation of Python.  The question is not, *"What is a faster implementation of the code?"* Instead, the question is, *"Why doesn't this code work?"*  
 
 I wrote the above code with pen and paper, and was confident that it would work.  The basic idea is that to generate a list of subsets, you start with an empty set as the first subset.  Then for each element in the list, add the result of extending it to the previous list of subsets.  So this is how I imagined it would work:
 
