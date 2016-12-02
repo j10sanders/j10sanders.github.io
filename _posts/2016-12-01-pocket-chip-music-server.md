@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  How to turn a Pocket CHIP into your home's music server/Chromecast Audio
+title:  How to turn a Pocket CHIP into your home's music server / Chromecast Audio
 category: Pocket CHIP, Linux, Mopidy
 description: Do you have, or want, a Pocket CHIP? Do you have a Chromecast Audio for each of the speaker setups in your house? If you answered "yes" to the first question and "no" to the second, then this tutorial is for you!
 ---
@@ -9,15 +9,19 @@ description: Do you have, or want, a Pocket CHIP? Do you have a Chromecast Audio
 <!--description-->
 
 
-Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered "yes" to the first question and "no" to the second, then this tutorial is for you!
+Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered "yes" to the first question and "no" to the second, then this tutorial is for you! 📻 
 
 I also answered "yes" to the first question and "no" to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch the device controlling music (you have guests over).  And Bluetooth reception is poor - I can't bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over -- my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.
 
 ![]({{site.baseurl}}/assets/img/speaker.jpg)
 
-If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the Pocket CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6  I would add a caveat to his post: Don't bother changing the `[mpd]` section of your mopidy config file.  If you don't know what an mpd is, you don't need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don't worry about it if you don't care to.  I also don't recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.
+<br>
 
-For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I'm copying some sections of pynboer's comment so you don't have to jump between parts of his tutorial and mine.
+If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: [https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6](https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6).  I would add a caveat to his post: Don't bother changing the `[mpd]` section of your mopidy config file.  If you don't know what an mpd is, you don't need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don't worry about it if you don't care to.  I also don't recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.
+
+For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I'm copying some sections of [pynboer's](https://bbs.nextthing.co/users/pnyboer/activity) comment so you don't have to jump between parts of his tutorial and mine.
+
+<br>
 
 ### Install and Configure Mopidy
 
@@ -50,6 +54,7 @@ You will need to install python development tools so you can use [pip] to instal
 	sudo apt-get install python-setuptools python-dev build-essential
 	sudo easy_install pip
 
+<br>
 
 ### Install a back end extension for your music service
 
@@ -64,6 +69,7 @@ You can navigate to the config file using the CHIP's built in file browser, or y
 
 You will need to add the information needed for your backend service.  Each backend service's github ReadMe contains the information you will need.  
 
+<br>
 
 ### Install a web interface
 
@@ -92,20 +98,22 @@ If mopidy runs without errors, then close it (with `ctrl-c`), and let's install 
 	sudo pip install Mopidy-Moped
 
 <img src="{{site.baseurl}}/assets/img/boniver.png" alt="BonIver" style="width: 400px;"/>
+<br><br>
 
-### Try it out
+### Try it out!
 
 Now you can use a browser to get at  `http://chip.local:6680/1`
-to access the web client. You may need to get the IP address from your Pocket CHIP if "chip.local" isn't working. You can do that in a terminal on the Pocket CHIP with the command `ip a` and find the address for `wlan0`.
+to access the web client. You may need to get the IP address from your Pocket CHIP if "chip.local" isn't working. You can do that in a terminal on the Pocket CHIP with the command `ip a` and find the address for `wlan0`.  I hope you enjoy and give all your roommates and visitors the URL.
 
+<br><br>
 
-## What if I just want to stream internet radio from my Pocket CHIP?
+### What if I just want to stream internet radio from my Pocket CHIP?
 
 Try out this simple command line interface for internet radio: [https://github.com/coderholic/pyradio](https://github.com/coderholic/pyradio)
 
 You might notice that the volume defaults to 100% every time you change a station...
 
-Don't worry.  You can edit the underlying mplayer's config file (the underlying audio player for pyradio. `"echo 'volume=50' >> ~/.mplayer/config"`
+Don't worry.  You can edit the underlying mplayer's config file (the underlying audio player for pyradio) so that it defaults to 50% (or whatever you choose) instead. `"echo 'volume=50' >> ~/.mplayer/config"`
 
 
 

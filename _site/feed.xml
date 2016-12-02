@@ -6,23 +6,27 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 02 Dec 2016 10:28:46 -0500</pubDate>
-    <lastBuildDate>Fri, 02 Dec 2016 10:28:46 -0500</lastBuildDate>
+    <pubDate>Fri, 02 Dec 2016 12:14:58 -0500</pubDate>
+    <lastBuildDate>Fri, 02 Dec 2016 12:14:58 -0500</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
-        <title>How to turn a Pocket CHIP into your home's music server/Chromecast Audio</title>
+        <title>How to turn a Pocket CHIP into your home's music server / Chromecast Audio</title>
         <description>&lt;!--description--&gt;
 
-&lt;p&gt;Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered “yes” to the first question and “no” to the second, then this tutorial is for you!&lt;/p&gt;
+&lt;p&gt;Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered “yes” to the first question and “no” to the second, then this tutorial is for you! 📻&lt;/p&gt;
 
 &lt;p&gt;I also answered “yes” to the first question and “no” to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch the device controlling music (you have guests over).  And Bluetooth reception is poor - I can’t bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over – my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/speaker.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the Pocket CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6  I would add a caveat to his post: Don’t bother changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;[mpd]&lt;/code&gt; section of your mopidy config file.  If you don’t know what an mpd is, you don’t need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don’t worry about it if you don’t care to.  I also don’t recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I’m copying some sections of pynboer’s comment so you don’t have to jump between parts of his tutorial and mine.&lt;/p&gt;
+&lt;p&gt;If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: &lt;a href=&quot;https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6&quot;&gt;https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6&lt;/a&gt;.  I would add a caveat to his post: Don’t bother changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;[mpd]&lt;/code&gt; section of your mopidy config file.  If you don’t know what an mpd is, you don’t need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don’t worry about it if you don’t care to.  I also don’t recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.&lt;/p&gt;
+
+&lt;p&gt;For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I’m copying some sections of &lt;a href=&quot;https://bbs.nextthing.co/users/pnyboer/activity&quot;&gt;pynboer’s&lt;/a&gt; comment so you don’t have to jump between parts of his tutorial and mine.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;install-and-configure-mopidy&quot;&gt;Install and Configure Mopidy&lt;/h3&gt;
 
@@ -61,6 +65,8 @@ sudo easy_install pip
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;install-a-back-end-extension-for-your-music-service&quot;&gt;Install a back end extension for your music service&lt;/h3&gt;
 
 &lt;p&gt;Here are the backend extensions that work with Mopidy: &lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/backends/&quot;&gt;https://docs.mopidy.com/en/latest/ext/backends/&lt;/a&gt;.  If you are a Google Music subscriber, you are in luck.  The GMusic extension is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service’s github page.  For example, for GMusic, I had to &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install mopidy-gmusic&lt;/code&gt;&lt;/p&gt;
@@ -74,6 +80,8 @@ sudo easy_install pip
 &lt;/div&gt;
 
 &lt;p&gt;You will need to add the information needed for your backend service.  Each backend service’s github ReadMe contains the information you will need.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;install-a-web-interface&quot;&gt;Install a web interface&lt;/h3&gt;
 
@@ -109,11 +117,23 @@ sudo pip install Mopidy-Moped
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/boniver.png&quot; alt=&quot;BonIver&quot; style=&quot;width: 400px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/boniver.png&quot; alt=&quot;BonIver&quot; style=&quot;width: 400px;&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;try-it-out&quot;&gt;Try it out&lt;/h3&gt;
+&lt;h3 id=&quot;try-it-out&quot;&gt;Try it out!&lt;/h3&gt;
+
 &lt;p&gt;Now you can use a browser to get at  &lt;code class=&quot;highlighter-rouge&quot;&gt;http://chip.local:6680/1&lt;/code&gt;
-to access the web client. You may need to get the IP address from your Pocket CHIP if “chip.local” isn’t working. You can do that in a terminal on the Pocket CHIP with the command &lt;code class=&quot;highlighter-rouge&quot;&gt;ip a&lt;/code&gt; and find the address for &lt;code class=&quot;highlighter-rouge&quot;&gt;wlan0&lt;/code&gt;.&lt;/p&gt;
+to access the web client. You may need to get the IP address from your Pocket CHIP if “chip.local” isn’t working. You can do that in a terminal on the Pocket CHIP with the command &lt;code class=&quot;highlighter-rouge&quot;&gt;ip a&lt;/code&gt; and find the address for &lt;code class=&quot;highlighter-rouge&quot;&gt;wlan0&lt;/code&gt;.  I hope you enjoy and give all your roommates and visitors the URL.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;what-if-i-just-want-to-stream-internet-radio-from-my-pocket-chip&quot;&gt;What if I just want to stream internet radio from my Pocket CHIP?&lt;/h3&gt;
+
+&lt;p&gt;Try out this simple command line interface for internet radio: &lt;a href=&quot;https://github.com/coderholic/pyradio&quot;&gt;https://github.com/coderholic/pyradio&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You might notice that the volume defaults to 100% every time you change a station…&lt;/p&gt;
+
+&lt;p&gt;Don’t worry.  You can edit the underlying mplayer’s config file (the underlying audio player for pyradio) so that it defaults to 50% (or whatever you choose) instead. &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;echo 'volume=50' &amp;gt;&amp;gt; ~/.mplayer/config&quot;&lt;/code&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 01 Dec 2016 00:00:00 -0500</pubDate>
