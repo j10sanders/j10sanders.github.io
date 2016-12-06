@@ -81,7 +81,7 @@
 	<span class="k">else</span><span class="p">:</span>
 	    <span class="k">return</span> <span class="n">subsets</span></code></pre></figure>
 
-<p>If your first impulse it to try to write this with generators - good for you, that approach should lead to a more efficient program, but for this example, I am working with this implementation to illustrate a point about the object orientation of Python.  The question is not, <em>“What is a faster implementation of the code?”</em> Instead, the question is, <em>“Why doesn’t this code work?”</em></p>
+<p>If your first impulse it to try to write this function as a generator - good thinking <a href="https://www.technomancy.org/python/powerset-generator-python/">(here is a good example of that)</a>. However, I am working with this implementation to illustrate a point about the object orientation of Python.  The question is not, <em>“What is a more efficient solution to the problem?”</em> Instead, the question is, <em>“Why doesn’t this code work?”</em></p>
 
 <p>I wrote the above code with pen and paper, and was confident that it would work.  The basic idea is that to generate a list of subsets, you start with an empty set as the first subset.  Then for each element in the list, add the result of extending it to the previous list of subsets.  So this is how I imagined it would work:</p>
 

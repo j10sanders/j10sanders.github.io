@@ -102,8 +102,12 @@ If mopidy runs without errors, then close it (with `ctrl-c`), and let's install 
 
 ### Try it out!
 
-Now you can use a browser to get at  `http://chip.local:6680/1`
-to access the web client. You may need to get the IP address from your Pocket CHIP if "chip.local" isn't working. You can do that in a terminal on the Pocket CHIP with the command `ip a` and find the address for `wlan0`.  I hope you enjoy and give all your roommates and visitors the URL.
+Now you can use a browser to get at  `http://chip.local:6680/1` to access the web client. You may need to get the IP address from your Pocket CHIP if "chip.local" isn't working. You can do that in a terminal on the Pocket CHIP with the command `ip a` and find the address for `wlan0`.  It's a good idea to set a static IP, so you don't have to update your bookmark if the IP address changes:  `nmtui` is a great tool for this.  [Here is a sample configuration](https://bbs.nextthing.co/t/how-to-set-static-ip/2568/19) posted on the CHIP forums that worked for me:
+
+<img src="{{site.baseurl}}/assets/img/ip.jpg" alt="ip" style="width: 600px;"/>
+<br><br>
+
+I hope you find this setup as enjoyable as I do, and give all your roommates and visitors the URL to control your home's music selection.
 
 <br><br>
 
