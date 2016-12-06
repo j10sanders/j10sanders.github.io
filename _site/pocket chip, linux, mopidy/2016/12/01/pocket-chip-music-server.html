@@ -69,17 +69,17 @@
   <div class="article-content" itemprop="articleBody">
     <!--description-->
 
-<p>Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered “yes” to the first question and “no” to the second, then this tutorial is for you! 📻</p>
+<p>Do you have, or want, a <a href="https://getchip.com/pages/pocketchip">Pocket Chip</a>?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered “yes” to the first question and “no” to the second, then this tutorial is for you! 📻</p>
 
-<p>I also answered “yes” to the first question and “no” to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch which device is controlling the music (like when you have guests over).  Also, Bluetooth reception sucks - I can’t bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over – my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.</p>
+<p>I also answered “yes” to the first question and “no” to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch which device is controlling the music (like when you have guests over).  Also, Bluetooth reception  can be shoddy - I can’t bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over – my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But ever since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.</p>
 
 <p><img src="/assets/img/speaker.jpg" alt="" /></p>
 
 <p><br /></p>
 
-<p>If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: <a href="https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6">https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6</a>.  I would add a caveat to his post: Don’t bother changing the <code class="highlighter-rouge">[mpd]</code> section of your mopidy config file.  If you don’t know what an mpd is, you don’t need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don’t worry about it if you don’t care to.  I also don’t recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.</p>
+<p>If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out <a href="https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6">this post</a> by one of the CHIP developers, pnyboer, which shows you how to configure <a href="https://www.mopidy.com/">Mopidy</a> for Spotify use.  I would add some caveats to his post: Don’t bother changing the <code class="highlighter-rouge">[mpd]</code> section of your mopidy config file.  If you don’t know what an mpd is, you won’t need to configure it to get your Pocket Chip functioning as a music server for your domain, so don’t worry about it if you don’t care to.  I also don’t recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.</p>
 
-<p>For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I’m copying some sections of <a href="https://bbs.nextthing.co/users/pnyboer/activity">pynboer’s</a> comment so you don’t have to jump between parts of his tutorial and mine.</p>
+<p>For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I’m copying some sections of <a href="https://bbs.nextthing.co/users/pnyboer/activity">pynboer’s comment</a> so you don’t have to jump between parts of his tutorial and mine.</p>
 
 <p><br /></p>
 
@@ -104,9 +104,13 @@ sudo apt-get install mopidy
 
 <p>At the time of writing, Mopidy is version 2.0.1. Check your version with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mopidy --version If it's not the newest version, you should fix the local scan script:
+<div class="highlighter-rouge"><pre class="highlight"><code>mopidy --version
+</code></pre>
+</div>
 
-sudo apt-get update &amp;&amp; sudo apt-get install -y wget
+<p>If it’s not the newest version, you should fix the local scan script:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update &amp;&amp; sudo apt-get install -y wget
 cp  /usr/lib/python2.7/dist-packages/mopidy/audio/scan.py scan.py.bak
 wget https://raw.githubusercontent.com/SeeSpotRun/mopidy/fix/gstreamer_not_pushing_tags_2/mopidy/audio/scan.py
 sudo cp scan.py /usr/lib/python2.7/dist-packages/mopidy/audio/scan.py

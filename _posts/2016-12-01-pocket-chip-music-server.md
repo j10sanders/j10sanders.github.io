@@ -9,17 +9,17 @@ description: Do you have, or want, a Pocket CHIP? Do you have a Chromecast Audio
 <!--description-->
 
 
-Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered "yes" to the first question and "no" to the second, then this tutorial is for you! 📻 
+Do you have, or want, a [Pocket Chip](https://getchip.com/pages/pocketchip)?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered "yes" to the first question and "no" to the second, then this tutorial is for you! 📻 
 
-I also answered "yes" to the first question and "no" to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch which device is controlling the music (like when you have guests over).  Also, Bluetooth reception sucks - I can't bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over -- my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.
+I also answered "yes" to the first question and "no" to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch which device is controlling the music (like when you have guests over).  Also, Bluetooth reception  can be shoddy - I can't bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over -- my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But ever since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.
 
 ![]({{site.baseurl}}/assets/img/speaker.jpg)
 
 <br>
 
-If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: [https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6](https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6).  I would add a caveat to his post: Don't bother changing the `[mpd]` section of your mopidy config file.  If you don't know what an mpd is, you don't need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don't worry about it if you don't care to.  I also don't recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.
+If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out [this post](https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6) by one of the CHIP developers, pnyboer, which shows you how to configure [Mopidy](https://www.mopidy.com/) for Spotify use.  I would add some caveats to his post: Don't bother changing the `[mpd]` section of your mopidy config file.  If you don't know what an mpd is, you won't need to configure it to get your Pocket Chip functioning as a music server for your domain, so don't worry about it if you don't care to.  I also don't recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.
 
-For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I'm copying some sections of [pynboer's](https://bbs.nextthing.co/users/pnyboer/activity) comment so you don't have to jump between parts of his tutorial and mine.
+For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I'm copying some sections of [pynboer's comment](https://bbs.nextthing.co/users/pnyboer/activity) so you don't have to jump between parts of his tutorial and mine.
 
 <br>
 
@@ -41,6 +41,8 @@ and `ctl-c` to quit it once it has finished booting.
 At the time of writing, Mopidy is version 2.0.1. Check your version with:
 
 	mopidy --version
+
+
 If it's not the newest version, you should fix the local scan script:
 
 	sudo apt-get update && sudo apt-get install -y wget
@@ -58,7 +60,7 @@ You will need to install python development tools so you can use [pip] to instal
 
 ### Install a back end extension for your music service
 
-Here are the backend extensions that work with Mopidy: [https://docs.mopidy.com/en/latest/ext/backends/](https://docs.mopidy.com/en/latest/ext/backends/).  If you are a Google Music subscriber, you are in luck.  The GMusic extension is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service's github page.  For example, for GMusic, I had to `pip install mopidy-gmusic`
+[Here are the backend extensions that work with Mopidy.](https://docs.mopidy.com/en/latest/ext/backends/)  If you are a Google Music subscriber, you are in luck.  The [GMusic extension](https://github.com/mopidy/mopidy-gmusic) is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service's github page.  For example, for GMusic, I simply had to `pip install mopidy-gmusic`
 
 		
 Now, modify the config file:
@@ -82,7 +84,7 @@ You will also be installing a web interface, so you will need to change the [htt
 	#static_dir =
 	#zeroconf = Mopidy HTTP server on $hostname
 
-The hostname is the only part you will need to change from the default.  Be sure to remove the `#` at the beginning of the line, since it is commenting out the line to use the default.  You can find more information here: [https://docs.mopidy.com/en/latest/ext/http/](https://docs.mopidy.com/en/latest/ext/http/)
+The hostname is the only part you will need to change from the default.  Be sure to remove the `#` at the beginning of the line, since it is commenting out the line to use the default.  You can find more information [in the mopidy docs](https://docs.mopidy.com/en/latest/ext/http/).
 
 Now, to make sure the configs are loaded into Mopidy (and if you have any local music you want added), run:
 
@@ -92,7 +94,7 @@ before you start mopidy on CHIP with:
 
 	mopidy 
 
-If mopidy runs without errors, then close it (with `ctrl-c`), and let's install a web interface.  Here are the available web extensions: [https://docs.mopidy.com/en/latest/ext/web/#ext-web](https://docs.mopidy.com/en/latest/ext/web/#ext-web).  I recommend installing [Mopidy-Mobile](https://github.com/tkem/mopidy-mobile) and  [Mopidy-Moped](https://github.com/martijnboland/moped).  You can test them out to see which one works better for you (and your guests).  I use Mopidy-Mobile on my phone and Mopidy-Moped on my laptop.
+If mopidy runs without errors, then close it (with `ctrl-c`), and let's install a web interface, so you can control the music from any other decive on your network!  Here are the available [web extensions](https://docs.mopidy.com/en/latest/ext/web/#ext-web).  I recommend installing [Mopidy-Mobile](https://github.com/tkem/mopidy-mobile) and  [Mopidy-Moped](https://github.com/martijnboland/moped).  You can test them out to see which one works better for you (and your guests).  I use Mopidy-Mobile on my phone and Mopidy-Moped on my laptop.
 
 	sudo pip install Mopidy-Mobile
 	sudo pip install Mopidy-Moped

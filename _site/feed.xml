@@ -6,25 +6,25 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Dec 2016 11:01:48 -0500</pubDate>
-    <lastBuildDate>Tue, 06 Dec 2016 11:01:48 -0500</lastBuildDate>
+    <pubDate>Tue, 06 Dec 2016 13:59:44 -0500</pubDate>
+    <lastBuildDate>Tue, 06 Dec 2016 13:59:44 -0500</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
         <title>How to turn a Pocket CHIP into your home's music server / Chromecast Audio</title>
         <description>&lt;!--description--&gt;
 
-&lt;p&gt;Do you have, or want, a Pocket Chip?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered “yes” to the first question and “no” to the second, then this tutorial is for you! 📻&lt;/p&gt;
+&lt;p&gt;Do you have, or want, a &lt;a href=&quot;https://getchip.com/pages/pocketchip&quot;&gt;Pocket Chip&lt;/a&gt;?  Do you have a Chromecast Audio for each of the speaker setups in your house?  If you answered “yes” to the first question and “no” to the second, then this tutorial is for you! 📻&lt;/p&gt;
 
-&lt;p&gt;I also answered “yes” to the first question and “no” to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch which device is controlling the music (like when you have guests over).  Also, Bluetooth reception sucks - I can’t bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over – my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.&lt;/p&gt;
+&lt;p&gt;I also answered “yes” to the first question and “no” to the second.  And I wanted a way to stream any music I can play on my phone, to my home speakers.  I have a Marshall Stanmore speaker that has Bluetooth built in, but Bluetooth sucks: pairing can be a pain, especially if you want to switch which device is controlling the music (like when you have guests over).  Also, Bluetooth reception  can be shoddy - I can’t bring my phone with me to my bedroom and expect uninterrupted audio in my living room.  This is a major downer when I have people over – my phone has to stay in the living room, so I end up just plugging it in Auxiliary Input.  But ever since I setup Mopidy + GMusic + web extensions on my Pocket CHIP, those days are over.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/speaker.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out this post by one of the CHIP developers, pnyboer, which shows you how to configure Mopidy for Spotify use: &lt;a href=&quot;https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6&quot;&gt;https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6&lt;/a&gt;.  I would add a caveat to his post: Don’t bother changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;[mpd]&lt;/code&gt; section of your mopidy config file.  If you don’t know what an mpd is, you don’t need to worry about it to get your Pocket Chip functioning as a music server for your domain, so don’t worry about it if you don’t care to.  I also don’t recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.&lt;/p&gt;
+&lt;p&gt;If you would like to do this yourself, and you are a Spotify subscriber, I recommend checking out &lt;a href=&quot;https://bbs.nextthing.co/t/calling-any-spotify-users/6430/6&quot;&gt;this post&lt;/a&gt; by one of the CHIP developers, pnyboer, which shows you how to configure &lt;a href=&quot;https://www.mopidy.com/&quot;&gt;Mopidy&lt;/a&gt; for Spotify use.  I would add some caveats to his post: Don’t bother changing the &lt;code class=&quot;highlighter-rouge&quot;&gt;[mpd]&lt;/code&gt; section of your mopidy config file.  If you don’t know what an mpd is, you won’t need to configure it to get your Pocket Chip functioning as a music server for your domain, so don’t worry about it if you don’t care to.  I also don’t recommend using MPoD, or any MPD interface from your phone, since it will be a pain for guests in your apartment to have to download an app to be able to control the music.&lt;/p&gt;
 
-&lt;p&gt;For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I’m copying some sections of &lt;a href=&quot;https://bbs.nextthing.co/users/pnyboer/activity&quot;&gt;pynboer’s&lt;/a&gt; comment so you don’t have to jump between parts of his tutorial and mine.&lt;/p&gt;
+&lt;p&gt;For non-Spotify subscribers, like me (I use Google Music), here is a full tutorial.  Full disclosure: I’m copying some sections of &lt;a href=&quot;https://bbs.nextthing.co/users/pnyboer/activity&quot;&gt;pynboer’s comment&lt;/a&gt; so you don’t have to jump between parts of his tutorial and mine.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -49,9 +49,13 @@ sudo apt-get install mopidy
 
 &lt;p&gt;At the time of writing, Mopidy is version 2.0.1. Check your version with:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mopidy --version If it's not the newest version, you should fix the local scan script:
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mopidy --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install -y wget
+&lt;p&gt;If it’s not the newest version, you should fix the local scan script:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install -y wget
 cp  /usr/lib/python2.7/dist-packages/mopidy/audio/scan.py scan.py.bak
 wget https://raw.githubusercontent.com/SeeSpotRun/mopidy/fix/gstreamer_not_pushing_tags_2/mopidy/audio/scan.py
 sudo cp scan.py /usr/lib/python2.7/dist-packages/mopidy/audio/scan.py
