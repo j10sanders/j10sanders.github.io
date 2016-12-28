@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  The Deeply OO Nature of Python Collections
+title:  The Deeply Mutable Nature of Python Collections
 category: Python, Algorithms, Object Oriented
 description: What I learned while debugging
 ---
