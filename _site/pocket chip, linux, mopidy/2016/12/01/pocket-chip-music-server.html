@@ -128,7 +128,7 @@ sudo easy_install pip
 
 <h3 id="install-a-back-end-extension-for-your-music-service">Install a back end extension for your music service</h3>
 
-<p>Here are the backend extensions that work with Mopidy: <a href="https://docs.mopidy.com/en/latest/ext/backends/">https://docs.mopidy.com/en/latest/ext/backends/</a>.  If you are a Google Music subscriber, you are in luck.  The GMusic extension is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service’s github page.  For example, for GMusic, I had to <code class="highlighter-rouge">pip install mopidy-gmusic</code></p>
+<p><a href="https://docs.mopidy.com/en/latest/ext/backends/">Here are the backend extensions that work with Mopidy.</a>  If you are a Google Music subscriber, you are in luck.  The <a href="https://github.com/mopidy/mopidy-gmusic">GMusic extension</a> is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service’s github page.  For example, for GMusic, I simply had to <code class="highlighter-rouge">pip install mopidy-gmusic</code></p>
 
 <p>Now, modify the config file:</p>
 
@@ -155,7 +155,7 @@ hostname = ::
 </code></pre>
 </div>
 
-<p>The hostname is the only part you will need to change from the default.  Be sure to remove the <code class="highlighter-rouge">#</code> at the beginning of the line, since it is commenting out the line to use the default.  You can find more information here: <a href="https://docs.mopidy.com/en/latest/ext/http/">https://docs.mopidy.com/en/latest/ext/http/</a></p>
+<p>The hostname is the only part you will need to change from the default.  Be sure to remove the <code class="highlighter-rouge">#</code> at the beginning of the line, since it is commenting out the line to use the default.  You can find more information <a href="https://docs.mopidy.com/en/latest/ext/http/">in the mopidy docs</a>.</p>
 
 <p>Now, to make sure the configs are loaded into Mopidy (and if you have any local music you want added), run:</p>
 
@@ -169,7 +169,7 @@ hostname = ::
 </code></pre>
 </div>
 
-<p>If mopidy runs without errors, then close it (with <code class="highlighter-rouge">ctrl-c</code>), and let’s install a web interface.  Here are the available web extensions: <a href="https://docs.mopidy.com/en/latest/ext/web/#ext-web">https://docs.mopidy.com/en/latest/ext/web/#ext-web</a>.  I recommend installing <a href="https://github.com/tkem/mopidy-mobile">Mopidy-Mobile</a> and  <a href="https://github.com/martijnboland/moped">Mopidy-Moped</a>.  You can test them out to see which one works better for you (and your guests).  I use Mopidy-Mobile on my phone and Mopidy-Moped on my laptop.</p>
+<p>If mopidy runs without errors, then close it (with <code class="highlighter-rouge">ctrl-c</code>), and let’s install a web interface, so you can control the music from any other decive on your network!  Here are the available <a href="https://docs.mopidy.com/en/latest/ext/web/#ext-web">web extensions</a>.  I recommend installing <a href="https://github.com/tkem/mopidy-mobile">Mopidy-Mobile</a> and  <a href="https://github.com/martijnboland/moped">Mopidy-Moped</a>.  You can test them out to see which one works better for you (and your guests).  I use Mopidy-Mobile on my phone and Mopidy-Moped on my laptop.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>sudo pip install Mopidy-Mobile
 sudo pip install Mopidy-Moped

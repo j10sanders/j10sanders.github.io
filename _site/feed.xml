@@ -6,9 +6,58 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Dec 2016 13:59:44 -0500</pubDate>
-    <lastBuildDate>Tue, 06 Dec 2016 13:59:44 -0500</lastBuildDate>
+    <pubDate>Thu, 12 Jan 2017 10:39:54 -0500</pubDate>
+    <lastBuildDate>Thu, 12 Jan 2017 10:39:54 -0500</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>My top two resources for intermediate-advanced Python programmers</title>
+        <description>&lt;!--description--&gt;
+
+&lt;h1 id=&quot;my-top-two-resources-for-intermediate---advanced-python-programmers&quot;&gt;My top two resources for intermediate - advanced Python programmers&lt;/h1&gt;
+
+&lt;p&gt;I’ll start off by saying that the two best resources I’ve come across for becoming a better Python programmer take far larger time commitments than the two I’m writing about here.  Those are: attending &lt;a href=&quot;https://www.recurse.com/&quot;&gt;Recurse Center&lt;/a&gt; (although not Python specific), and doing Thinkful’s &lt;a href=&quot;https://www.thinkful.com/courses/learn-python-online/&quot;&gt;“Programming in Python”&lt;/a&gt; course.  I plan on writing more about RC at some point, and if you are new to building web applications, I highly recommend Thinkful’s course.  For now, I figured I would share the two less time-intensive resources I’ve found to be most helpful to becoming a better Python programmer.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-hackers-guide-to-python&quot;&gt;The Hacker’s Guide to Python&lt;/h2&gt;
+
+&lt;p&gt;A fellow RC’er, Pieter, let me borrow his copy of &lt;a href=&quot;https://thehackerguidetopython.com/&quot;&gt;The Hacker’s Guide to Python&lt;/a&gt; (I recently bought my own copy).  I figured it would be nice to skim over - but I’d already been programming in Python for  a couple years, so I didn’t expect to find it very insightful.  I was wrong.  Sure, there are chapters I skimmed over, but there is a remarkable amount of material that will help even veteran Python programmers up their game.&lt;/p&gt;
+
+&lt;p&gt;As an example, Danjou covers &lt;strong&gt;“Managing API changes”&lt;/strong&gt;, a topic most Python books wouldn’t touch, with depth and clarity.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“You can’t rely on developers to read your change log or documentation when they upgrade to a newer version of  your Python package. Python provides an interesting module called ‘warnings’ that can help in this regard.  This module allows your code to issue various kinds of warnings, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;PendingDeprecationWarning&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;DeprecationWarning&lt;/code&gt;.  These warnings can be used to inform the developer that a function they’re calling is either deprecated or going to be deprecated. This way, developers will be able to see that they’re using an old interface and should do something about it.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;He gives code examples and shows the warnings developers would relieve after calling a function with a warning.  &lt;strong&gt;And that’s just one of many practice he discusses for managing API changes.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A few other topics that I found particularly insightful (italicized words are mine):&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sharing your Work with the World&lt;/strong&gt; - &lt;em&gt;about best practices for publishing to PyPI&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Entry Points&lt;/strong&gt; - &lt;em&gt;have you ever used &lt;code class=&quot;highlighter-rouge&quot;&gt;entry_point_inspector&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Named Tuples and Slots&lt;/strong&gt; - &lt;em&gt;how to use objects in a way that uses half the default behavior (with the &lt;code class=&quot;highlighter-rouge&quot;&gt;__slots__&lt;/code&gt; attribute or &lt;code class=&quot;highlighter-rouge&quot;&gt;namedtuple&lt;/code&gt; class from the &lt;code class=&quot;highlighter-rouge&quot;&gt;collection&lt;/code&gt; module).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Using six&lt;/strong&gt; - &lt;em&gt;how to use six - a module that implements compatibility for Python2 and 3&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This is just a taste of the topics that Danjou covers.  He even devotes a lot of time discussing functional programming approaches that can be used in Python.  I know &lt;a href=&quot;http://www.effectivepython.com/&quot;&gt;some people&lt;/a&gt; prefer using list comprehensions to filter or map, but Danjou makes a good case to not only use these, but to learn LISP while you are at it (and I agree)!&lt;/p&gt;
+
+&lt;p&gt;Lastly, he peppers interviews with accomplished Python programmers throughout the book, and these are well thought out, enlightening conversations that add a lot of value and help keep a nice rhythm to the overall text.  The only downside I found is that Danjou’s English is at times a bit shaky.  It’s always clear what he is trying to say, but sometimes the grammar can be a bit jarring.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started-testing&quot;&gt;Getting Started Testing&lt;/h2&gt;
+
+&lt;p&gt;The second resource is Ned Batchelder’s (the guy who wrote Coverage) &lt;a href=&quot;http://nedbatchelder.com/text/test0.html&quot;&gt;“Getting Started Testing”&lt;/a&gt;.  You should probably just watch it now.  If you think you already write great tests and don’t need to watch this video which is an introduction, I’d say to watch it at &lt;a href=&quot;https://chrome.google.com/webstore/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk?hl=en&quot;&gt;2x speed&lt;/a&gt;.  The value of this video isn’t in showing how tests are written - it’s how Ned builds up the case for best practices.  He starts off by showing how you can test code without actual test cases at all.  He quickly find disadvantages to this approach (not repeatable and labor intensive), so he make a separate file to hold test code… and finds issues with this approach (tests don’t compare results to expected results), and continues in this manner over and over again, until he hits modern best practices for tests, including automated testing, correct and careful usage of Mocks, and even writing tests for your test helpers!&lt;/p&gt;
+
+&lt;p&gt;The way he builds up the case for current best practices is elegant, convincing, and helped me become a more thoughtful tester.  Ned is a force in the Python community, so I recommend watching and reading everything he has put out, but I especially recommend this lecture as a start.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 12 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/python,%20testing/2017/01/12/two-python-resources.html</link>
+        <guid isPermaLink="true">http://localhost:4000/python,%20testing/2017/01/12/two-python-resources.html</guid>
+        
+        
+        <category>Python, Testing</category>
+        
+      </item>
     
       <item>
         <title>How to turn a Pocket CHIP into your home's music server / Chromecast Audio</title>
@@ -73,7 +122,7 @@ sudo easy_install pip
 
 &lt;h3 id=&quot;install-a-back-end-extension-for-your-music-service&quot;&gt;Install a back end extension for your music service&lt;/h3&gt;
 
-&lt;p&gt;Here are the backend extensions that work with Mopidy: &lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/backends/&quot;&gt;https://docs.mopidy.com/en/latest/ext/backends/&lt;/a&gt;.  If you are a Google Music subscriber, you are in luck.  The GMusic extension is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service’s github page.  For example, for GMusic, I had to &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install mopidy-gmusic&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/backends/&quot;&gt;Here are the backend extensions that work with Mopidy.&lt;/a&gt;  If you are a Google Music subscriber, you are in luck.  The &lt;a href=&quot;https://github.com/mopidy/mopidy-gmusic&quot;&gt;GMusic extension&lt;/a&gt; is actually much better than the Spotify one, since it adds your saved library to Mopidy, in addition to allowing you to stream the entire contents of the service.  However, this tutorial will work for any of the backend music services that have been developed for mopidy. Make sure to follow the instructions on the backend service’s github page.  For example, for GMusic, I simply had to &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install mopidy-gmusic&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, modify the config file:&lt;/p&gt;
 
@@ -100,7 +149,7 @@ hostname = ::
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;The hostname is the only part you will need to change from the default.  Be sure to remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt; at the beginning of the line, since it is commenting out the line to use the default.  You can find more information here: &lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/http/&quot;&gt;https://docs.mopidy.com/en/latest/ext/http/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The hostname is the only part you will need to change from the default.  Be sure to remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt; at the beginning of the line, since it is commenting out the line to use the default.  You can find more information &lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/http/&quot;&gt;in the mopidy docs&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Now, to make sure the configs are loaded into Mopidy (and if you have any local music you want added), run:&lt;/p&gt;
 
@@ -114,7 +163,7 @@ hostname = ::
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;If mopidy runs without errors, then close it (with &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl-c&lt;/code&gt;), and let’s install a web interface.  Here are the available web extensions: &lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/web/#ext-web&quot;&gt;https://docs.mopidy.com/en/latest/ext/web/#ext-web&lt;/a&gt;.  I recommend installing &lt;a href=&quot;https://github.com/tkem/mopidy-mobile&quot;&gt;Mopidy-Mobile&lt;/a&gt; and  &lt;a href=&quot;https://github.com/martijnboland/moped&quot;&gt;Mopidy-Moped&lt;/a&gt;.  You can test them out to see which one works better for you (and your guests).  I use Mopidy-Mobile on my phone and Mopidy-Moped on my laptop.&lt;/p&gt;
+&lt;p&gt;If mopidy runs without errors, then close it (with &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl-c&lt;/code&gt;), and let’s install a web interface, so you can control the music from any other decive on your network!  Here are the available &lt;a href=&quot;https://docs.mopidy.com/en/latest/ext/web/#ext-web&quot;&gt;web extensions&lt;/a&gt;.  I recommend installing &lt;a href=&quot;https://github.com/tkem/mopidy-mobile&quot;&gt;Mopidy-Mobile&lt;/a&gt; and  &lt;a href=&quot;https://github.com/martijnboland/moped&quot;&gt;Mopidy-Moped&lt;/a&gt;.  You can test them out to see which one works better for you (and your guests).  I use Mopidy-Mobile on my phone and Mopidy-Moped on my laptop.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo pip install Mopidy-Mobile
 sudo pip install Mopidy-Moped
@@ -154,7 +203,7 @@ sudo pip install Mopidy-Moped
       </item>
     
       <item>
-        <title>The Deeply OO Nature of Python Collections</title>
+        <title>The Deeply Mutable Nature of Python Collections</title>
         <description>&lt;!--description--&gt;
 
 &lt;p&gt;I was “cracking” a coding interview problem last week, and learned a fundamental truth about mutability in python.  Maybe you already understand this fundamental truth, or maybe you’re as naïve as I was last week.  To find out, see if you can tell why this code, which is supposed to &lt;strong&gt;generate all subsets of a list&lt;/strong&gt;, fails miserably:&lt;/p&gt;
