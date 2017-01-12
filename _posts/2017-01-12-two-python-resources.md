@@ -9,7 +9,7 @@ description: Read 'The Hacker's Guide to Python' and watch 'Getting Started Test
 <!--description-->
 
 
-# My top two resources for intermediate - advanced Python programmers
+# The Hacker's Guide to Python and Getting Started Testing
 
 I'll start off by saying that the two best resources I've come across for becoming a better Python programmer take far larger time commitments than the two I'm writing about here.  Those are: attending [Recurse Center](https://www.recurse.com/) (although not Python specific), and doing Thinkful's ["Programming in Python"](https://www.thinkful.com/courses/learn-python-online/) course.  I plan on writing more about RC at some point, and if you are new to building web applications, I highly recommend Thinkful's course.  For now, I figured I would share the two less time-intensive resources I've found to be most helpful to becoming a better Python programmer.
 
