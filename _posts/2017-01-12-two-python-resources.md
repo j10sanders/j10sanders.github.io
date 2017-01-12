@@ -1,13 +1,12 @@
 ---
 layout: post
-title:  Python Programmers: read "The Hacker's Guide to Python" and watch "Getting Started Testing"
+title:  Python Programmers: read 'The Hacker's Guide to Python' and watch 'Getting Started Testing'
 category: Python, Testing
-description: My top two resources for intermediate - advanced Python programmers
+description: My top two resources for intermediate-advanced Python programmers
 ---
 
 
 <!--description-->
-
 
 
 # My top two resources for intermediate - advanced Python programmers
