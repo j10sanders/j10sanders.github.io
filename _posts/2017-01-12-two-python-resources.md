@@ -40,6 +40,7 @@ This is just a taste of the topics that Danjou covers.  He even devotes a lot of
 
 Lastly, he peppers interviews with accomplished Python programmers throughout the book, and these are well thought out, enlightening conversations that add a lot of value and help keep a nice rhythm to the overall text.  The only downside I found is that Danjou's English is at times a bit shaky.  It's always clear what he is trying to say, but sometimes the grammar can be a bit jarring.
 
+Another book that seems like a good resource for intermediate-advanced Python programmers is [Effective Python](http://www.effectivepython.com/), although I haven't spent the same amount of time with it yet.
 
 ## Getting Started Testing
 
