@@ -19,7 +19,7 @@ permalink: /resume/
 
 #### Access Softek - Manager of NYC and Online Banking Tech Support / IT / Project Manager &emsp; <small>*2014 - 2016*</small>
 
-`SQL` `Networking` `Mobile Development` `Project Management` `Agile`
+`SQL` `Networking` `Mobile Development` `Project Management` `Agile` `Python Scripting`
 
 >I managed the NYC group of Tech Support specialists and all technical support for our Online Banking product. I had widespread responsibilities that included: training, troubleshooting (often on Credit Unions' servers), and managing projects.
 
@@ -30,6 +30,8 @@ permalink: /resume/
 •	Managed projects, such as the development of our ticket ticket-tracking software ([Request Tracker](https://bestpractical.com/request-tracker)).  I also led our internal transition from Redmine to Jira, and our transition from GoToMeeting to ScreenConnect.
 
 •	Managed product development for fixing bugs in live apps and making them ADA compliant.  I also managed/set sprints for Online Banking features and bug fixes.
+
+•	Wrote Python scripts to provide monitoring coverage of production systems.
 
 ---
 
