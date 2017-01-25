@@ -4,7 +4,7 @@
 ## Experience
 
 
-#### Recurse Center - Participant (Fullstack) <small>*September - January 2016*</small>
+#### Recurse Center - Participant (Fullstack) <small>*September 2016 - January '17*</small>
 `Python`, `Flask/Django`, `Postgres/SQLAlchemy/SQL`, `Javascript`, `Full-Stack Web-Development`
 
 I built [winthemini](https://github.com/j10sanders/crossword) - a social network for people who do the NYT Daily-Mini Crossword puzzle, contributed to open source projects like [proselint](http://proselint.com/), pair programmed on a bunch of projects, and learned Javascript. 
