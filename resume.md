@@ -4,7 +4,7 @@ title: Jonathan Sanders
 permalink: /resume/
 
 ---
-<small>[download pdf](https://github.com/j10sanders/j10sanders.github.io/raw/master/JonathanSanders.pdf)</small>
+<small>[download pdf](https://github.com/j10sanders/j10sanders.github.io/raw/master/JonathanSandersResume.pdf)</small>
 
 ## Experience
 
@@ -85,7 +85,7 @@ Powerlifting, Backpacking, and Learning
 
 ---
 
-<small>[download resume pdf](https://github.com/j10sanders/j10sanders.github.io/raw/master/JonathanSanders.pdf)</small>
+<small>[download resume pdf](https://github.com/j10sanders/j10sanders.github.io/raw/master/JonathanSandersResume.pdf)</small>
 
 ---
 
