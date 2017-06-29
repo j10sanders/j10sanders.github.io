@@ -7,7 +7,7 @@ permalink: /resume/
 <small>[download pdf](https://github.com/j10sanders/j10sanders.github.io/raw/master/JonathanSanders.pdf)</small>
 
  <iframe src="https://resume.creddle.io/embed/3et9ac71o8y"
-  width="850" height="1100" seamless></iframe>
+  width="680" height="880" seamless></iframe>
 
 ---
 
