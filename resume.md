@@ -18,6 +18,7 @@ permalink: /resume/
 
 •	Dimpull also uses web3 technologies such as Truffle, Solidity, and various other tools for accepting payments into an Ethereum escrow smart-contract that I wrote.
 
+---
 
 #### Bank of America - Software Developer <small>*January 2017 - April 2018*</small>
 `Javascript` `React/Redux` `Full-Stack Web-Development`
@@ -33,7 +34,7 @@ permalink: /resume/
 
 
 ---
-#### Recurser / Full-Stack Developer - Recurse Center &emsp; <small>*September 2016 - Dec 2016*</small>
+#### Recurser / Full-Stack Developer - Recurse Center (coding "retreat" in NYC)&emsp; <small>*September 2016 - Dec 2016*</small>
 `Python` `Flask/Django` `Postgres/SQLAlchemy/SQL` `Javascript` `Full-Stack Web-Development`
 
 •	Built [winthemini](https://github.com/j10sanders/crossword) - a social network for people who do the NYT Daily-Mini Crossword puzzle, contributed to open source projects like [proselint](http://proselint.com/), and learned some Haskell.
