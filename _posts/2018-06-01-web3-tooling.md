@@ -51,7 +51,7 @@ Nope! A newer version of Ganache resolved my headache. I should mention that it�
 Dimpull can’t just interact with the blockchain from the client side. It also needs to be able to call the smart contract from the server, to release funds from the escrow. It seems that most people interacting with web3 are doing it from the client side, so the web3.py community appears to be quite a bit smaller than web3.js.
 Outside of truffle-land, you need to install the solidity compiler separately, which for some reason isn’t as easy as a pip install. WHY ISN’T INSTALLING PY-SOLC AS EASY AS A PIP INSTALL? And I ran into a show-stopping issue where I couldn’t use web3.py because I couldn’t compile my smart contract in python.
 
-![]({{site.baseurl}}/assets/pyeth/tbt.png)
+![]({{site.baseurl}}/assets/img/pyeth.png)
 
 
 Fortunately, the gitter community is very active (this is definitely a theme in the dApp world!) And since the community is so small, I had an extended troubleshooting session with the maintainer of the py-solc repo (thanks @pipermerriam)! The solution to my issue was to downgrade my py-solc version from 0.4.19 to 0.4.17… which is not a good sign. ¯\_(ツ)_/¯ But it worked, and so on I went. **2.5 Stars**.
