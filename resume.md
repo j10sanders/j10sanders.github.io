@@ -82,11 +82,11 @@ permalink: /resume/
 
 ## Education
 
-#### NYU - BA in Philosophy with a Minor in Business Studies &emsp; <small>*2013*</small>
+#### NYU - BA in Philosophy <small>*2013*</small>
 
 
 #### Online (Coursera, Thinkful, Udacity): &emsp; <small>*2014 - current*</small>
-`Discrete Math` `Algorithms` `Databases for Python` `Fullstack "Nano Degree` `Computational Thinking and Data Science` `Cryptography` `Blockchain Application` 
+`Discrete Math` `Algorithms` `Databases for Python` `Fullstack "Nano Degree"` `Computational Thinking and Data Science` `Cryptography` `Blockchain Application` 
 
 ---
 
